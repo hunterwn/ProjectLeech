@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Player {
-    public class Walk : MonoBehaviour
+    public class Walk : PlayerState
     {
-        string animid = "walk";
+        public string animid = "walk";
         Animator animator;
         PlayerController player;
+        CharacterController controller;
         void OnEnable() {
+            controller = GetComponent<CharacterController>();
             player = GetComponent<PlayerController>();
             animator = GetComponent<Animator>();
             animator.SetBool(this.animid, true);
@@ -16,53 +18,57 @@ namespace Player {
         void OnDisable() {
             animator.SetBool(this.animid, false);
         }
-        void WalkR_Phys() {
-            if(player.current_speed < player.walk_maxspeed)
-            {
-                player.current_speed += player.walk_acceleration * Time.deltaTime;
-            }
-            if(player.current_speed > player.walk_maxspeed)
-            {
-                player.current_speed = player.walk_maxspeed;
-            }
-        }
-        void WalkL_Phys() {
-            if(player.current_speed > player.walk_maxspeed * -1)
-            {
-                player.current_speed -= player.walk_acceleration * Time.deltaTime;
-            }
-            if(player.current_speed < player.walk_maxspeed * -1)
-            {
-                player.current_speed = player.walk_maxspeed * -1;
-            }
-        }
-        
         void Update() {
-            int inputDir = PlayerFunctions.GetDirectionHeld();
+            PhysicsHandler();
+            CollisionHandler();
+            InputHandler();
+        }
+
+        void PhysicsHandler() {
             int facing_dir = animator.GetInteger("facing_direction");
 
             if(facing_dir > 0)
             {
-                WalkR_Phys();
+                if(player.current_speed_h < player.walk_maxspeed)
+                {
+                    player.current_speed_h += player.walk_acceleration * Time.deltaTime;
+                }
+                if(player.current_speed_h > player.walk_maxspeed)
+                {
+                    player.current_speed_h = player.walk_maxspeed;
+                }
             } else {
-                WalkL_Phys();
+                if(player.current_speed_h > player.walk_maxspeed * -1)
+                {
+                    player.current_speed_h -= player.walk_acceleration * Time.deltaTime;
+                }
+                if(player.current_speed_h < player.walk_maxspeed * -1)
+                {
+                    player.current_speed_h = player.walk_maxspeed * -1;
+                }
             }
+        }
 
-
-
-            if(PlayerFunctions.CheckRunInput())
+        void CollisionHandler() {
+            if(!controller.isGrounded)
             {
-                this.enabled = false;
-                GetComponent<Run>().enabled = true;
+                EnterFall();
             }
-            else if (PlayerFunctions.GetDirectionHeld() == 0)
+        }
+
+        void InputHandler() {
+            int facing_dir = animator.GetInteger("facing_direction");
+            int inputDir = GetDirectionHeld();
+            if(CheckRunInput())
             {
-                this.enabled = false;
-                GetComponent<Idle>().enabled = true;
+                EnterRun();
+            }
+            else if (GetDirectionHeld() == 0)
+            {
+                EnterIdle();
             } else if (inputDir != facing_dir)
             {
-                facing_dir *= -1;
-                animator.SetInteger("facing_direction", facing_dir);
+                ReverseFacingDirection();
             }
         }
     }

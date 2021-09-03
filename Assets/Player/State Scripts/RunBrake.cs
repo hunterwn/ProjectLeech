@@ -3,48 +3,55 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Player {
-    public class RunBrake : MonoBehaviour
+    public class RunBrake : PlayerState
     {
-        string animid = "runbrake";
+        public string animid = "runbrake";
         Animator animator;
+        PlayerController player;
+        CharacterController controller;
         void OnEnable() {
+            controller = GetComponent<CharacterController>();
+            player = GetComponent<PlayerController>();
             animator = GetComponent<Animator>();
             animator.SetBool(this.animid, true);
         }
         void OnDisable() {
             animator.SetBool(this.animid, false);
         }
-        void Update()
-        {
-            PlayerController player = GetComponent<PlayerController>();
+        void Update() {
+            PhysicsHandler();
+            CollisionHandler();
+            InputHandler();
+        }
+
+        void PhysicsHandler() {
+            ApplyHorizontalFriction(player.ground_friction);
+        }
+
+        void CollisionHandler() {
+            if(!controller.isGrounded)
+            {
+                EnterFall();
+            }
+        }
+
+        void InputHandler() {
             int facing_direction = animator.GetInteger("facing_direction");
+            int inputDir = GetDirectionHeld();
 
-            if(Mathf.Abs(player.current_speed) > 0)
-            {
-                player.current_speed -= player.ground_friction * Time.deltaTime * facing_direction;
-            }
-
-            if(player.current_speed < 0 && facing_direction > 0 ||
-                player.current_speed > 0 && facing_direction < 0)
-            {
-                player.current_speed = 0;
-            }
-
-            if (PlayerFunctions.CheckAnimationFinished(animator))
+            if (CheckAnimationFinished())
             {
                 this.enabled = false;
-                int inputDir = PlayerFunctions.GetDirectionHeld();
-
                 if(inputDir == 0)
                 {
-                    GetComponent<Idle>().enabled = true;
+                    EnterIdle();
                     return;
                 } else if (inputDir == facing_direction * -1)
                 {
                     facing_direction *= -1;
                     animator.SetInteger("facing_direction", facing_direction);
                 }
-                if(PlayerFunctions.CheckRunInput())
+                if(CheckRunInput())
                 {
                     GetComponent<Run>().enabled = true;
                 } else {

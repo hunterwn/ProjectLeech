@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Player {
-    public class Entry : PlayerState
+    public class Example : PlayerState
     {
-        public string animid = "entry";
+        public string animid = "example";
         Animator animator;
         PlayerController player;
         void OnEnable() {
-            //animator.SetBool(this.animid, true);
-            EnterIdle();
+            player = GetComponent<PlayerController>();
+            animator = GetComponent<Animator>();
+            animator.SetBool(this.animid, true);
         }
         void OnDisable() {
-            //animator.SetBool(this.animid, false);
+            animator.SetBool(this.animid, false);
         }
         void Update() {
             PhysicsHandler();

@@ -5,20 +5,34 @@ using UnityEngine;
 namespace Player {
     public class PlayerController : MonoBehaviour
     {
+        public float gravity;
         public float ground_friction;
+        public float air_friction;
         public float run_acceleration;
         public float walk_acceleration;
+        public float aerial_drift;
         public float run_maxspeed;
         public float walk_maxspeed;
-        public float current_speed;
+        public float max_airdriftspeed;
+        public float current_speed_h;
+        public float current_speed_v;
+        public bool airstate;
+
+        public CharacterController controller;
 
         void Start()
         {
+            controller = GetComponent<CharacterController>();
             GetComponent<Entry>().enabled = true;
         }
         void Update()
         {
-            transform.Translate(Vector3.right * current_speed, Space.World);
+            if(controller.isGrounded)
+            {
+                current_speed_v = -0.01f;
+            }
+            Vector3 move = new Vector3(current_speed_h, current_speed_v, 0);
+            controller.Move(move);
         }
     }
 }

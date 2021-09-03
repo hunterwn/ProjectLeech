@@ -3,38 +3,56 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Player {
-    public class Run : MonoBehaviour
+    public class Run : PlayerState
     {
-        string animid = "run";
+        public string animid = "run";
         Animator animator;
+        PlayerController player;
+        CharacterController controller;
         void OnEnable() {
+            controller = GetComponent<CharacterController>();
+            player = GetComponent<PlayerController>();
             animator = GetComponent<Animator>();
             animator.SetBool(this.animid, true);
         }
         void OnDisable() {
             animator.SetBool(this.animid, false);
         }
-
         void Update() {
-            PlayerController player = GetComponent<PlayerController>();
-            int inputDir = PlayerFunctions.GetDirectionHeld();
+            PhysicsHandler();
+            CollisionHandler();
+            InputHandler();
+        }
+
+        void PhysicsHandler() {
             int facing_direction = animator.GetInteger("facing_direction");
-            
-            if(Mathf.Abs(player.current_speed) < player.run_maxspeed)
+
+            if(Mathf.Abs(player.current_speed_h) < player.run_maxspeed)
             {
-                player.current_speed += player.run_acceleration * Time.deltaTime * facing_direction;
+                player.current_speed_h += player.run_acceleration * Time.deltaTime * facing_direction;
             }
 
-            if(Mathf.Abs(player.current_speed) >  player.run_maxspeed)
+            if(Mathf.Abs(player.current_speed_h) >  player.run_maxspeed)
             {
-                player.current_speed = player.run_maxspeed * facing_direction;
+                player.current_speed_h = player.run_maxspeed * facing_direction;
             }
+        }
 
-            if(!PlayerFunctions.CheckRunInput() || 
+        void CollisionHandler() {
+            if(!controller.isGrounded)
+            {
+                EnterFall();
+            }
+        }
+
+        void InputHandler() {
+            int inputDir = GetDirectionHeld();
+            int facing_direction = animator.GetInteger("facing_direction");
+
+            if(!CheckRunInput() || 
                 (inputDir == facing_direction * -1))
             {
-                this.enabled = false;
-                GetComponent<RunBrake>().enabled = true;
+                EnterRunBrake();
             }
         }
     }
