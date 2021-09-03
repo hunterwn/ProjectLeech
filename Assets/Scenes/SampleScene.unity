@@ -1107,7 +1107,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1868036772}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 50
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 0
@@ -1166,8 +1166,8 @@ MonoBehaviour:
   ground_friction: 1
   run_acceleration: 0.6
   walk_acceleration: 0.6
-  run_maxspeed: 0.3
-  walk_maxspeed: 0.15
+  run_maxspeed: 0.25
+  walk_maxspeed: 0.1
   current_speed: 0
 --- !u!4 &1868036784 stripped
 Transform:

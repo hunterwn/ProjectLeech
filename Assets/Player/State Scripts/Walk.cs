@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 namespace Player {
     public class Walk : MonoBehaviour
     {
@@ -37,6 +36,7 @@ namespace Player {
                 player.current_speed = player.walk_maxspeed * -1;
             }
         }
+        
         void Update() {
             int inputDir = PlayerFunctions.GetDirectionHeld();
             int facing_dir = animator.GetInteger("facing_direction");
@@ -47,6 +47,8 @@ namespace Player {
             } else {
                 WalkL_Phys();
             }
+
+
 
             if(PlayerFunctions.CheckRunInput())
             {
