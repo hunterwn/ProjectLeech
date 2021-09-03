@@ -5,16 +5,20 @@ using UnityEngine;
 namespace Player {
     public class PlayerController : MonoBehaviour
     {
-        // Start is called before the first frame update
+        public float ground_friction;
+        public float run_acceleration;
+        public float walk_acceleration;
+        public float run_maxspeed;
+        public float walk_maxspeed;
+        public float current_speed;
+
         void Start()
         {
             GetComponent<Entry>().enabled = true;
         }
-
-        // Update is called once per frame
         void Update()
         {
-            
+            transform.Translate(Vector3.right * current_speed, Space.World);
         }
     }
 }

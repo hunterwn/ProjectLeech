@@ -16,21 +16,41 @@ namespace Player {
         }
         void Update()
         {
-             if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !animator.IsInTransition(0))
-             {
-                 this.enabled = false;
-                 if(PlayerFunctions.GetDirectionHeld() == 0)
-                 {
+            PlayerController player = GetComponent<PlayerController>();
+            int facing_direction = animator.GetInteger("facing_direction");
+
+            if(Mathf.Abs(player.current_speed) > 0)
+            {
+                player.current_speed -= player.ground_friction * Time.deltaTime * facing_direction;
+            }
+
+            if(player.current_speed < 0 && facing_direction > 0 ||
+                player.current_speed > 0 && facing_direction < 0)
+            {
+                player.current_speed = 0;
+            }
+
+            if (PlayerFunctions.CheckAnimationFinished(animator))
+            {
+                this.enabled = false;
+                int inputDir = PlayerFunctions.GetDirectionHeld();
+
+                if(inputDir == 0)
+                {
                     GetComponent<Idle>().enabled = true;
-                 } else {
-                     if(PlayerFunctions.CheckRunInput())
-                     {
-                         GetComponent<Run>().enabled = true;
-                     } else {
-                         GetComponent<Walk>().enabled = true;
-                     }
-                 }
-             }
+                    return;
+                } else if (inputDir == facing_direction * -1)
+                {
+                    facing_direction *= -1;
+                    animator.SetInteger("facing_direction", facing_direction);
+                }
+                if(PlayerFunctions.CheckRunInput())
+                {
+                    GetComponent<Run>().enabled = true;
+                } else {
+                    GetComponent<Walk>().enabled = true;
+                }
+            }
         }
     }
 }

@@ -6,28 +6,32 @@ namespace Player {
     public class Idle : MonoBehaviour
     {
         string animid = "idle";
+        Animator animator;
         void OnEnable() {
-            GetComponent<Animator>().SetBool(this.animid, true);
+            animator = GetComponent<Animator>();
+            animator.SetBool(this.animid, true);
         }
         void OnDisable() {
-            GetComponent<Animator>().SetBool(this.animid, false);
+            animator.SetBool(this.animid, false);
         }
-        // Update is called once per frame
         void Update() {
-            print(transform.rotation.y);
+            PlayerController player = GetComponent<PlayerController>();
             int inputDir = PlayerFunctions.GetDirectionHeld();
-            int facing_direction = GetComponent<Animator>().GetInteger("facing_direction");
+            int facing_direction = animator.GetInteger("facing_direction");
 
-            if (!GetComponent<CharacterController>().isGrounded) {
-                //this.enabled = false;
-                //GetComponent<Falling>().enabled = true;
-            } else if (inputDir != 0) {
-                if(inputDir != facing_direction)
+            player.current_speed = 0;
+
+            if(inputDir == facing_direction * -1) 
+            {
+                facing_direction *= -1;
+                animator.SetInteger("facing_direction", facing_direction);
+            } else if(inputDir == facing_direction) 
+            {
+                this.enabled = false;
+                if(PlayerFunctions.CheckRunInput())
                 {
-                    facing_direction *= -1;
-                    GetComponent<Animator>().SetInteger("facing_direction", facing_direction);
+                    GetComponent<Run>().enabled = true;
                 } else {
-                    this.enabled = false;
                     GetComponent<Walk>().enabled = true;
                 }
             }

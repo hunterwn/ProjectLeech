@@ -26,5 +26,10 @@ namespace Player {
                 return 0;
             }
         }
+
+        public static bool CheckAnimationFinished(Animator animator)
+        {
+            return (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !animator.IsInTransition(0));
+        }
     }
 }

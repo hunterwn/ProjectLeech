@@ -6,23 +6,35 @@ namespace Player {
     public class Run : MonoBehaviour
     {
         string animid = "run";
+        Animator animator;
         void OnEnable() {
-            GetComponent<Animator>().SetBool(this.animid, true);
+            animator = GetComponent<Animator>();
+            animator.SetBool(this.animid, true);
         }
         void OnDisable() {
-            GetComponent<Animator>().SetBool(this.animid, false);
+            animator.SetBool(this.animid, false);
         }
-        void Update()
-        {
-            if(!PlayerFunctions.CheckRunInput())
+
+        void Update() {
+            PlayerController player = GetComponent<PlayerController>();
+            int inputDir = PlayerFunctions.GetDirectionHeld();
+            int facing_direction = animator.GetInteger("facing_direction");
+            
+            if(Mathf.Abs(player.current_speed) < player.run_maxspeed)
+            {
+                player.current_speed += player.run_acceleration * Time.deltaTime * facing_direction;
+            }
+
+            if(Mathf.Abs(player.current_speed) >  player.run_maxspeed)
+            {
+                player.current_speed = player.run_maxspeed * facing_direction;
+            }
+
+            if(!PlayerFunctions.CheckRunInput() || 
+                (inputDir == facing_direction * -1))
             {
                 this.enabled = false;
-                if(PlayerFunctions.GetDirectionHeld() == 0)
-                {
-                    GetComponent<Idle>().enabled = true;
-                } else {
-                    GetComponent<RunBrake>().enabled = true;
-                }
+                GetComponent<RunBrake>().enabled = true;
             }
         }
     }
