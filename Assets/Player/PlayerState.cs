@@ -17,6 +17,11 @@ namespace Player {
             return Input.GetKey("space");
         }
 
+        public bool CheckJumpAerialInput()
+        {
+            return Input.GetKeyDown("space");
+        }
+
         public int GetDirectionHeld()
         {
             if(Input.GetKey("a"))
@@ -120,7 +125,12 @@ namespace Player {
         }
         public void EnterFall()
         {
+            PlayerController player = GetComponent<PlayerController>();
             Animator animator = GetComponent<Animator>();
+            if(!player.airstate) {
+                player.jumps_left -= 1;
+                player.airstate = true;
+            }
             this.enabled = false;
             animator.SetBool(this.animid, false);
             GetComponent<Fall>().enabled = true;
@@ -148,6 +158,9 @@ namespace Player {
         }
         public void EnterLanding()
         {
+            PlayerController player = GetComponent<PlayerController>();
+            player.jumps_left = player.max_jumps;
+            player.airstate = false;
             Animator animator = GetComponent<Animator>();
             this.enabled = false;
             animator.SetBool(this.animid, false);
@@ -164,10 +177,31 @@ namespace Player {
 
         public void EnterJump()
         {
+            PlayerController player = GetComponent<PlayerController>();
             Animator animator = GetComponent<Animator>();
+            if(player.jumps_left == 0) {
+                return;
+            }
+            player.jumps_left -= 1;
+            player.airstate = true;
             this.enabled = false;
             animator.SetBool(this.animid, false);
             GetComponent<Jump>().enabled = true;
+            
+        }
+
+        public void EnterJumpAerial()
+        {
+            PlayerController player = GetComponent<PlayerController>();
+            Animator animator = GetComponent<Animator>();
+            if(player.jumps_left == 0) {
+                return;
+            }
+            player.jumps_left -= 1;
+            this.enabled = false;
+            animator.SetBool(this.animid, false);
+            GetComponent<JumpAerial>().enabled = true;
+            
         }
     }
 }

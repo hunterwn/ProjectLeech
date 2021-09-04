@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Player {
-    public class Fall : PlayerState
+    public class JumpAerial : PlayerState
     {
         Animator animator;
         PlayerController player;
         CharacterController controller;
+        private bool jumpVelocityApplied;
         void OnEnable() {
-            this.animid = "fall";
+            this.animid = "jumpaerial";
             controller = GetComponent<CharacterController>();
             player = GetComponent<PlayerController>();
             animator = GetComponent<Animator>();
             animator.SetBool(this.animid, true);
+            jumpVelocityApplied = false;
         }
         void Update() {
             PhysicsHandler();
@@ -22,13 +24,19 @@ namespace Player {
         }
 
         void PhysicsHandler() {
-            ApplyHorizontalFriction(player.air_friction);
-            ApplyAerialDrift(player.aerial_drift);
-            ApplyGravity(player.gravity);
+            if(!jumpVelocityApplied)
+            {
+                jumpVelocityApplied = true;
+                player.current_speed_v = player.jump_aerial_initial_velocity;
+            } else {
+                ApplyGravity(player.gravity);
+                ApplyHorizontalFriction(player.air_friction);
+                ApplyAerialDrift(player.aerial_drift);
+            }
         }
 
         void CollisionHandler() {
-            if(controller.isGrounded)
+            if(jumpVelocityApplied && player.current_speed_v < 0 && controller.isGrounded)
             {
                 player.current_speed_v = 0;
                 EnterLanding();
@@ -39,15 +47,14 @@ namespace Player {
             int inputDir = GetDirectionHeld();
             int facing_dir = animator.GetInteger("facing_direction");
 
-            if(CheckJumpAerialInput())
-            {
-                EnterJumpAerial();
-                return;
-            }
-
             if(!CheckAnimationTransition() && inputDir == facing_dir * -1)
             {
                 ReverseFacingDirection();
+            }
+
+            if(CheckAnimationFinished())
+            {
+                EnterFall();
             }
         }
     }

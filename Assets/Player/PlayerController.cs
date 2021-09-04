@@ -14,10 +14,15 @@ namespace Player {
         public float run_maxspeed;
         public float walk_maxspeed;
         public float max_airdriftspeed;
-        public float current_speed_h;
-        public float current_speed_v;
+ 
         public float jump_initial_velocity;
+        public float jump_aerial_initial_velocity;
         public int jumpSquatFrames;
+        public int max_jumps;
+        [HideInInspector] public float current_speed_h;
+        [HideInInspector] public float current_speed_v;
+        [HideInInspector] public int jumps_left;
+        [HideInInspector] public bool airstate;
 
         public CharacterController controller;
 
@@ -25,6 +30,12 @@ namespace Player {
         {
             controller = GetComponent<CharacterController>();
             GetComponent<Entry>().enabled = true;
+
+            //initialize attributes
+            jumps_left = max_jumps;
+            current_speed_h = 0;
+            current_speed_v = 0;
+            airstate = false;
         }
         void Update()
         {

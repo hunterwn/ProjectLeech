@@ -47,6 +47,12 @@ namespace Player {
             int inputDir = GetDirectionHeld();
             int facing_dir = animator.GetInteger("facing_direction");
 
+            if(CheckJumpAerialInput())
+            {
+                EnterJumpAerial();
+                return;
+            }
+
             if(!CheckAnimationTransition() && inputDir == facing_dir * -1)
             {
                 ReverseFacingDirection();

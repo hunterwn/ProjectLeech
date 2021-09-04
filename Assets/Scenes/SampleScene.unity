@@ -648,10 +648,13 @@ MonoBehaviour:
   run_maxspeed: 0.15
   walk_maxspeed: 0.08
   max_airdriftspeed: 0.075
+  jump_initial_velocity: 0.1
+  jump_aerial_initial_velocity: 0.12
+  jumpSquatFrames: 5
+  max_jumps: 2
   current_speed_h: 0
   current_speed_v: 0
-  jump_initial_velocity: 0.1
-  jumpSquatFrames: 5
+  jumps_left: 0
   controller: {fileID: 0}
 --- !u!136 &1868036782
 CapsuleCollider:
@@ -714,6 +717,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animid: jump
+--- !u!114 &1868036787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868036772}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8856899f4a725d44894543f737c9a5ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animid: 
 --- !u!1001 &1935839791
 PrefabInstance:
   m_ObjectHideFlags: 0
