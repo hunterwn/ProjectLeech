@@ -102,15 +102,24 @@ namespace Player {
             player.current_speed_v -= gravity * Time.deltaTime; 
         }
 
+        public int GetMovementDirection()
+        {
+            PlayerController player = GetComponent<PlayerController>();
+            int movement_dir = (player.current_speed_h > 0) ? 1 : -1;
+            return movement_dir;
+        }
+
         public void EnterIdle()
         {
             this.enabled = false;
             GetComponent<Idle>().enabled = true;
+            print("enteridle");
         }
         public void EnterFall()
         {
             this.enabled = false;
             GetComponent<Fall>().enabled = true;
+            print("enterfall");
         }
         public void EnterWalk()
         {

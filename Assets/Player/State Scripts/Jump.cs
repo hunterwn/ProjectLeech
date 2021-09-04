@@ -31,7 +31,6 @@ namespace Player {
             {
                 jumpVelocityApplied = true;
                 player.current_speed_v = player.jump_initial_velocity;
-                print("jump, speed_v = " + player.current_speed_v);
             } else {
                 ApplyGravity(player.gravity);
                 ApplyHorizontalFriction(player.air_friction);
@@ -44,6 +43,14 @@ namespace Player {
         }
 
         void InputHandler() {
+            int inputDir = GetDirectionHeld();
+            int facing_dir = animator.GetInteger("facing_direction");
+
+            if(!CheckAnimationTransition() && inputDir == facing_dir * -1)
+            {
+                ReverseFacingDirection();
+            }
+
             if(CheckAnimationFinished())
             {
                 EnterFall();

@@ -71,17 +71,20 @@ namespace Player {
                 return;
             }
 
-            if(CheckRunInput())
+            if(!CheckAnimationTransition())
             {
-                EnterRun();
-            }
+                if(CheckRunInput())
+                {
+                    EnterRun();
+                }
 
-            else if (GetDirectionHeld() == 0)
-            {
-                EnterIdle();
-            } else if (inputDir != facing_dir)
-            {
-                ReverseFacingDirection();
+                else if (GetDirectionHeld() == 0)
+                {
+                    EnterIdle();
+                } else if (inputDir != facing_dir)
+                {
+                    ReverseFacingDirection();
+                }
             }
         }
     }

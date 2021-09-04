@@ -8,10 +8,14 @@ namespace Player {
         public string animid = "landing";
         Animator animator;
         PlayerController player;
+        bool facing_dir_set;
+        int frameCount;
         void OnEnable() {
             player = GetComponent<PlayerController>();
             animator = GetComponent<Animator>();
             animator.SetBool(this.animid, true);
+            facing_dir_set = false;
+            frameCount = 0;
         }
         void OnDisable() {
             animator.SetBool(this.animid, false);
@@ -20,6 +24,9 @@ namespace Player {
             PhysicsHandler();
             CollisionHandler();
             InputHandler();
+
+            frameCount += 1;
+            print("frameCount: " + frameCount);
         }
 
         void PhysicsHandler() {
@@ -39,16 +46,20 @@ namespace Player {
                 {
                     EnterIdle();
                 } else {
-                    if(inputDir == facing_dir * -1)
+                    if(!CheckAnimationTransition())
                     {
-                        ReverseFacingDirection();
-                    }
+                        if(!facing_dir_set && inputDir == facing_dir * -1)
+                        {
+                            facing_dir_set = true;
+                            ReverseFacingDirection();
+                        }
 
-                    if(CheckRunInput())
-                    {
-                        EnterRun();
-                    } else {
-                        EnterWalk();
+                        if(CheckRunInput())
+                        {
+                            EnterRun();
+                        } else {
+                            EnterWalk();
+                        }
                     }
                 }
             }

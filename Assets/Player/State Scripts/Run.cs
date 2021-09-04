@@ -9,11 +9,21 @@ namespace Player {
         Animator animator;
         PlayerController player;
         CharacterController controller;
+        int facing_direction;
         void OnEnable() {
             controller = GetComponent<CharacterController>();
             player = GetComponent<PlayerController>();
             animator = GetComponent<Animator>();
             animator.SetBool(this.animid, true);
+
+            facing_direction = animator.GetInteger("facing_direction");
+            if(animator.GetCurrentAnimatorStateInfo(0).IsName("RunR"))
+            {
+                facing_direction = 1;
+            } else if (animator.GetCurrentAnimatorStateInfo(0).IsName("RunL")) {
+                facing_direction = -1;
+            }
+            animator.SetInteger("facing_direction", facing_direction);
         }
         void OnDisable() {
             animator.SetBool(this.animid, false);
@@ -25,7 +35,10 @@ namespace Player {
         }
 
         void PhysicsHandler() {
-            int facing_direction = animator.GetInteger("facing_direction");
+            if(CheckAnimationTransition())
+            {
+                ApplyHorizontalFriction(player.ground_friction);
+            }
 
             if(Mathf.Abs(player.current_speed_h) < player.run_maxspeed)
             {
@@ -47,7 +60,6 @@ namespace Player {
 
         void InputHandler() {
             int inputDir = GetDirectionHeld();
-            int facing_direction = animator.GetInteger("facing_direction");
 
             if(CheckJumpInput())
             {

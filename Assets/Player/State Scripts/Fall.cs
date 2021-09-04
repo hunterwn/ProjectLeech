@@ -34,12 +34,19 @@ namespace Player {
             if(controller.isGrounded)
             {
                 player.current_speed_v = 0;
+                print("enterlanding");
                 EnterLanding();
             }
         }
 
         void InputHandler() {
+            int inputDir = GetDirectionHeld();
+            int facing_dir = animator.GetInteger("facing_direction");
 
+            if(!CheckAnimationTransition() && inputDir == facing_dir * -1)
+            {
+                ReverseFacingDirection();
+            }
         }
     }
 }
