@@ -5,6 +5,8 @@ using UnityEngine;
 namespace Player {
     public class PlayerState : MonoBehaviour
     {
+        public string animid;
+        
         public bool CheckRunInput()
         {
             return Input.GetKey("left shift");
@@ -111,46 +113,60 @@ namespace Player {
 
         public void EnterIdle()
         {
+            Animator animator = GetComponent<Animator>();
             this.enabled = false;
+            animator.SetBool(this.animid, false);
             GetComponent<Idle>().enabled = true;
-            print("enteridle");
         }
         public void EnterFall()
         {
+            Animator animator = GetComponent<Animator>();
             this.enabled = false;
+            animator.SetBool(this.animid, false);
             GetComponent<Fall>().enabled = true;
-            print("enterfall");
         }
         public void EnterWalk()
         {
+            Animator animator = GetComponent<Animator>();
             this.enabled = false;
+            animator.SetBool(this.animid, false);
             GetComponent<Walk>().enabled = true;
         }
         public void EnterRun()
         {
+            Animator animator = GetComponent<Animator>();
             this.enabled = false;
+            animator.SetBool(this.animid, false);
             GetComponent<Run>().enabled = true;
         }
         public void EnterRunBrake()
         {
+            Animator animator = GetComponent<Animator>();
             this.enabled = false;
+            animator.SetBool(this.animid, false);
             GetComponent<RunBrake>().enabled = true;
         }
         public void EnterLanding()
         {
+            Animator animator = GetComponent<Animator>();
             this.enabled = false;
+            animator.SetBool(this.animid, false);
             GetComponent<Landing>().enabled = true;
         }
 
         public void EnterJumpSquat()
         {
+            Animator animator = GetComponent<Animator>();
             this.enabled = false;
+            animator.SetBool(this.animid, false);
             GetComponent<JumpSquat>().enabled = true;
         }
 
         public void EnterJump()
         {
+            Animator animator = GetComponent<Animator>();
             this.enabled = false;
+            animator.SetBool(this.animid, false);
             GetComponent<Jump>().enabled = true;
         }
     }

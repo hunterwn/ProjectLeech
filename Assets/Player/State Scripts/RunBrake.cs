@@ -5,18 +5,15 @@ using UnityEngine;
 namespace Player {
     public class RunBrake : PlayerState
     {
-        public string animid = "runbrake";
         Animator animator;
         PlayerController player;
         CharacterController controller;
         void OnEnable() {
+            this.animid = "runbrake";
             controller = GetComponent<CharacterController>();
             player = GetComponent<PlayerController>();
             animator = GetComponent<Animator>();
             animator.SetBool(this.animid, true);
-        }
-        void OnDisable() {
-            animator.SetBool(this.animid, false);
         }
         void Update() {
             PhysicsHandler();
@@ -47,7 +44,6 @@ namespace Player {
 
             if (CheckAnimationFinished())
             {
-                this.enabled = false;
                 if(inputDir == 0)
                 {
                     EnterIdle();
@@ -59,9 +55,9 @@ namespace Player {
                 }
                 if(CheckRunInput())
                 {
-                    GetComponent<Run>().enabled = true;
+                    EnterRun();
                 } else {
-                    GetComponent<Walk>().enabled = true;
+                    EnterWalk();
                 }
             }
         }

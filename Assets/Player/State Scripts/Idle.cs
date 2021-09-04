@@ -5,18 +5,15 @@ using UnityEngine;
 namespace Player {
     public class Idle : PlayerState
     {
-        public string animid = "idle";
         Animator animator;
         PlayerController player;
         CharacterController controller;
         void OnEnable() {
+            this.animid = "idle";
             controller = GetComponent<CharacterController>();
             player = GetComponent<PlayerController>();
             animator = GetComponent<Animator>();
             animator.SetBool(this.animid, true);
-        }
-        void OnDisable() {
-            animator.SetBool(this.animid, false);
         }
         void Update() {
             PhysicsHandler();

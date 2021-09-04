@@ -5,18 +5,18 @@ using UnityEngine;
 namespace Player {
     public class JumpSquat : PlayerState
     {
-        public string animid = "jumpsquat";
         Animator animator;
         PlayerController player;
         bool facing_dir_set;
+        int jumpSquatFramesLeft;
         void OnEnable() {
+            this.animid = "jumpsquat";
             player = GetComponent<PlayerController>();
             animator = GetComponent<Animator>();
             animator.SetBool(this.animid, true);
             facing_dir_set = false;
-        }
-        void OnDisable() {
-            animator.SetBool(this.animid, false);
+            jumpSquatFramesLeft = player.jumpSquatFrames;
+
         }
         void Update() {
             PhysicsHandler();
@@ -36,15 +36,17 @@ namespace Player {
             int inputDir = GetDirectionHeld();
             int facing_dir = animator.GetInteger("facing_direction");
 
+            jumpSquatFramesLeft -= 1;
+
+            if(jumpSquatFramesLeft == 0)
+            {
+                EnterJump();
+            }
+
             if(inputDir == facing_dir * -1 && !facing_dir_set)
             {
                 facing_dir_set = true;
                 ReverseFacingDirection();
-            }
-
-            if(CheckAnimationFinished())
-            {
-                EnterJump();
             }
         }
     }

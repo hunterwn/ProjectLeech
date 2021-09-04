@@ -5,18 +5,15 @@ using UnityEngine;
 namespace Player {
     public class Fall : PlayerState
     {
-        public string animid = "fall";
         Animator animator;
         PlayerController player;
         CharacterController controller;
         void OnEnable() {
+            this.animid = "fall";
             controller = GetComponent<CharacterController>();
             player = GetComponent<PlayerController>();
             animator = GetComponent<Animator>();
             animator.SetBool(this.animid, true);
-        }
-        void OnDisable() {
-            animator.SetBool(this.animid, false);
         }
         void Update() {
             PhysicsHandler();
@@ -34,7 +31,6 @@ namespace Player {
             if(controller.isGrounded)
             {
                 player.current_speed_v = 0;
-                print("enterlanding");
                 EnterLanding();
             }
         }

@@ -5,12 +5,12 @@ using UnityEngine;
 namespace Player {
     public class Run : PlayerState
     {
-        public string animid = "run";
         Animator animator;
         PlayerController player;
         CharacterController controller;
         int facing_direction;
         void OnEnable() {
+            this.animid = "run";
             controller = GetComponent<CharacterController>();
             player = GetComponent<PlayerController>();
             animator = GetComponent<Animator>();
@@ -24,9 +24,6 @@ namespace Player {
                 facing_direction = -1;
             }
             animator.SetInteger("facing_direction", facing_direction);
-        }
-        void OnDisable() {
-            animator.SetBool(this.animid, false);
         }
         void Update() {
             PhysicsHandler();
@@ -67,8 +64,7 @@ namespace Player {
                 return;
             }
 
-            if(!CheckRunInput() || 
-                (inputDir == facing_direction * -1))
+            if(!CheckRunInput() || inputDir == facing_direction * -1)
             {
                 EnterRunBrake();
             }

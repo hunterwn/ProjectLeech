@@ -5,10 +5,10 @@ ModelImporter:
   internalIDToNameTable:
   - first:
       74: 1827226128182048838
-    second: JumpSquatR
+    second: SquatR
   - first:
       74: -2915956570434176172
-    second: JumpSquatL
+    second: SquatL
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -40,7 +40,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: JumpSquatR
+      name: SquatR
       takeName: Take 001
       internalID: 0
       firstFrame: 1
@@ -69,7 +69,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0.59999996
     - serializedVersion: 16
-      name: JumpSquatL
+      name: SquatL
       takeName: Take 001
       internalID: 0
       firstFrame: 1

@@ -650,7 +650,8 @@ MonoBehaviour:
   max_airdriftspeed: 0.075
   current_speed_h: 0
   current_speed_v: 0
-  jump_initial_velocity: 0.15
+  jump_initial_velocity: 0.1
+  jumpSquatFrames: 5
   controller: {fileID: 0}
 --- !u!136 &1868036782
 CapsuleCollider:
@@ -738,11 +739,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e694dc62a1a54ce46a1a1e6e77b956d4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.42
+      value: -2.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e694dc62a1a54ce46a1a1e6e77b956d4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13.35
+      value: 29.7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e694dc62a1a54ce46a1a1e6e77b956d4, type: 3}
       propertyPath: m_LocalPosition.z

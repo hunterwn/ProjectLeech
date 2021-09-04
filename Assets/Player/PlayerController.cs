@@ -17,6 +17,7 @@ namespace Player {
         public float current_speed_h;
         public float current_speed_v;
         public float jump_initial_velocity;
+        public int jumpSquatFrames;
 
         public CharacterController controller;
 

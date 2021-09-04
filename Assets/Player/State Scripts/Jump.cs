@@ -5,20 +5,17 @@ using UnityEngine;
 namespace Player {
     public class Jump : PlayerState
     {
-        public string animid = "jump";
         Animator animator;
         PlayerController player;
         CharacterController controller;
         private bool jumpVelocityApplied;
         void OnEnable() {
+            this.animid = "jump";
             controller = GetComponent<CharacterController>();
             player = GetComponent<PlayerController>();
             animator = GetComponent<Animator>();
             animator.SetBool(this.animid, true);
             jumpVelocityApplied = false;
-        }
-        void OnDisable() {
-            animator.SetBool(this.animid, false);
         }
         void Update() {
             PhysicsHandler();
@@ -39,7 +36,11 @@ namespace Player {
         }
 
         void CollisionHandler() {
-
+            if(jumpVelocityApplied && player.current_speed_v < 0 && controller.isGrounded)
+            {
+                player.current_speed_v = 0;
+                EnterLanding();
+            }
         }
 
         void InputHandler() {
