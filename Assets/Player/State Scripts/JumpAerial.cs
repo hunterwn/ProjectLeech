@@ -5,16 +5,9 @@ using UnityEngine;
 namespace Player {
     public class JumpAerial : PlayerState
     {
-        Animator animator;
-        PlayerController player;
-        CharacterController controller;
         private bool jumpVelocityApplied;
         void OnEnable() {
-            this.animid = "jumpaerial";
-            controller = GetComponent<CharacterController>();
-            player = GetComponent<PlayerController>();
-            animator = GetComponent<Animator>();
-            animator.SetBool(this.animid, true);
+            initializeState("jumpaerial");
             jumpVelocityApplied = false;
         }
         void Update() {

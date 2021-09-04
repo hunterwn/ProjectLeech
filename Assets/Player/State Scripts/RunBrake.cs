@@ -5,15 +5,8 @@ using UnityEngine;
 namespace Player {
     public class RunBrake : PlayerState
     {
-        Animator animator;
-        PlayerController player;
-        CharacterController controller;
         void OnEnable() {
-            this.animid = "runbrake";
-            controller = GetComponent<CharacterController>();
-            player = GetComponent<PlayerController>();
-            animator = GetComponent<Animator>();
-            animator.SetBool(this.animid, true);
+            initializeState("runbrake");
         }
         void Update() {
             PhysicsHandler();

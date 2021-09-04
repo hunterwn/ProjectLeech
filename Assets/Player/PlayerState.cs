@@ -6,6 +6,20 @@ namespace Player {
     public class PlayerState : MonoBehaviour
     {
         public string animid;
+        public PlayerController player;
+        public Animator animator;
+        public CapsuleCollider coll;
+        public CharacterController controller;
+
+        public void initializeState(string animid)
+        {
+            this.animid = animid;
+            this.player = player = GetComponent<PlayerController>();
+            this.animator = GetComponent<Animator>();
+            this.coll = GetComponent<CapsuleCollider>();
+            this.controller = GetComponent<CharacterController>();
+            animator.SetBool(this.animid, true);
+        }
         
         public bool CheckRunInput()
         {

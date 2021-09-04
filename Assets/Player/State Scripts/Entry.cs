@@ -5,12 +5,10 @@ using UnityEngine;
 namespace Player {
     public class Entry : PlayerState
     {
-        Animator animator;
-        PlayerController player;
         void OnEnable() {
-            this.animid = "entry";
-            //animator.SetBool(this.animid, true);
-            EnterIdle();
+            initializeState("entry");
+
+            EnterIdle(); //TODO: make entry animation and remove this line
         }
         void Update() {
             PhysicsHandler();

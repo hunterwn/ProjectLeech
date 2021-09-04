@@ -23,26 +23,31 @@ namespace Player {
         [HideInInspector] public float current_speed_v;
         [HideInInspector] public int jumps_left;
         [HideInInspector] public bool airstate;
-
         public CharacterController controller;
 
         void Start()
         {
+            //initialize components
             controller = GetComponent<CharacterController>();
-            GetComponent<Entry>().enabled = true;
 
             //initialize attributes
             jumps_left = max_jumps;
             current_speed_h = 0;
             current_speed_v = 0;
             airstate = false;
+
+            //Enter initial state
+            GetComponent<Entry>().enabled = true;
         }
         void Update()
         {
+            //Keep player attached to the ground
             if(controller.isGrounded && Mathf.Abs(current_speed_v) < 0.01f)
             {
                 current_speed_v = -0.01f;
             }
+
+            //Move player based on current speed values
             Vector3 move = new Vector3(current_speed_h, current_speed_v, 0);
             controller.Move(move);
         }

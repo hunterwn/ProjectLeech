@@ -5,13 +5,8 @@ using UnityEngine;
 namespace Player {
     public class Example : PlayerState
     {
-        Animator animator;
-        PlayerController player;
         void OnEnable() {
-            this.animid = "example";
-            player = GetComponent<PlayerController>();
-            animator = GetComponent<Animator>();
-            animator.SetBool(this.animid, true);
+            initializeState("example");
         }
         void Update() {
             PhysicsHandler();

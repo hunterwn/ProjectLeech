@@ -5,16 +5,9 @@ using UnityEngine;
 namespace Player {
     public class Run : PlayerState
     {
-        Animator animator;
-        PlayerController player;
-        CharacterController controller;
         int facing_direction;
         void OnEnable() {
-            this.animid = "run";
-            controller = GetComponent<CharacterController>();
-            player = GetComponent<PlayerController>();
-            animator = GetComponent<Animator>();
-            animator.SetBool(this.animid, true);
+            initializeState("run");
 
             facing_direction = animator.GetInteger("facing_direction");
             if(animator.GetCurrentAnimatorStateInfo(0).IsName("RunR"))

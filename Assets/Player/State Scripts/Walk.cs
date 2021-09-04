@@ -5,15 +5,8 @@ using UnityEngine;
 namespace Player {
     public class Walk : PlayerState
     {
-        Animator animator;
-        PlayerController player;
-        CharacterController controller;
         void OnEnable() {
-            this.animid = "walk";
-            controller = GetComponent<CharacterController>();
-            player = GetComponent<PlayerController>();
-            animator = GetComponent<Animator>();
-            animator.SetBool(this.animid, true);
+            initializeState("walk");
         }
         void Update() {
             PhysicsHandler();

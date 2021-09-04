@@ -5,22 +5,13 @@ using UnityEngine;
 namespace Player {
     public class Landing : PlayerState
     {
-        Animator animator;
-        PlayerController player;
-        int frameCount;
         void OnEnable() {
-            this.animid = "landing";
-            player = GetComponent<PlayerController>();
-            animator = GetComponent<Animator>();
-            animator.SetBool(this.animid, true);
-            frameCount = 0;
+            initializeState("landing");
         }
         void Update() {
             PhysicsHandler();
             CollisionHandler();
             InputHandler();
-
-            frameCount += 1;
         }
 
         void PhysicsHandler() {

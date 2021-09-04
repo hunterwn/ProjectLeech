@@ -5,16 +5,10 @@ using UnityEngine;
 namespace Player {
     public class Jump : PlayerState
     {
-        Animator animator;
-        PlayerController player;
-        CharacterController controller;
         private bool jumpVelocityApplied;
         void OnEnable() {
-            this.animid = "jump";
-            controller = GetComponent<CharacterController>();
-            player = GetComponent<PlayerController>();
-            animator = GetComponent<Animator>();
-            animator.SetBool(this.animid, true);
+            initializeState("jump");
+            
             jumpVelocityApplied = false;
         }
         void Update() {
@@ -28,6 +22,7 @@ namespace Player {
             {
                 jumpVelocityApplied = true;
                 player.current_speed_v = player.jump_initial_velocity;
+                
             } else {
                 ApplyGravity(player.gravity);
                 ApplyHorizontalFriction(player.air_friction);

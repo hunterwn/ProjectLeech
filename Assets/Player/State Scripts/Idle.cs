@@ -5,15 +5,8 @@ using UnityEngine;
 namespace Player {
     public class Idle : PlayerState
     {
-        Animator animator;
-        PlayerController player;
-        CharacterController controller;
         void OnEnable() {
-            this.animid = "idle";
-            controller = GetComponent<CharacterController>();
-            player = GetComponent<PlayerController>();
-            animator = GetComponent<Animator>();
-            animator.SetBool(this.animid, true);
+            initializeState("idle");
         }
         void Update() {
             PhysicsHandler();
@@ -26,7 +19,7 @@ namespace Player {
         }
 
         void CollisionHandler() {
-            if(!controller.isGrounded)
+            if(!this.controller.isGrounded)
             {
                 EnterFall();
             }
