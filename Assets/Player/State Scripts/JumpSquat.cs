@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Player {
-    public class Landing : PlayerState
+    public class JumpSquat : PlayerState
     {
-        public string animid = "landing";
+        public string animid = "jumpsquat";
         Animator animator;
         PlayerController player;
         void OnEnable() {
@@ -23,7 +23,7 @@ namespace Player {
         }
 
         void PhysicsHandler() {
-            ApplyHorizontalFriction(player.ground_friction);
+
         }
 
         void CollisionHandler() {
@@ -33,24 +33,7 @@ namespace Player {
         void InputHandler() {
             if(CheckAnimationFinished())
             {
-                int inputDir = GetDirectionHeld();
-                int facing_dir = animator.GetInteger("facing_direction");
-                if(inputDir == 0)
-                {
-                    EnterIdle();
-                } else {
-                    if(inputDir == facing_dir * -1)
-                    {
-                        ReverseFacingDirection();
-                    }
-
-                    if(CheckRunInput())
-                    {
-                        EnterRun();
-                    } else {
-                        EnterWalk();
-                    }
-                }
+                EnterJump();
             }
         }
     }

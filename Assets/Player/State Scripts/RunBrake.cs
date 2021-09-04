@@ -39,6 +39,12 @@ namespace Player {
             int facing_direction = animator.GetInteger("facing_direction");
             int inputDir = GetDirectionHeld();
 
+            if(CheckJumpInput())
+            {
+                EnterJumpSquat();
+                return;
+            }
+
             if (CheckAnimationFinished())
             {
                 this.enabled = false;

@@ -16,7 +16,7 @@ namespace Player {
         public float max_airdriftspeed;
         public float current_speed_h;
         public float current_speed_v;
-        public bool airstate;
+        public float jump_initial_velocity;
 
         public CharacterController controller;
 
@@ -27,7 +27,7 @@ namespace Player {
         }
         void Update()
         {
-            if(controller.isGrounded)
+            if(controller.isGrounded && Mathf.Abs(current_speed_v) < 0.01f)
             {
                 current_speed_v = -0.01f;
             }

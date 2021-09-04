@@ -639,18 +639,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bc6d62b513829c468786c5cc90b983e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: 0.1
-  ground_friction: 0.25
+  gravity: 0.3
+  ground_friction: 0.3
   air_friction: 0.05
   run_acceleration: 0.6
   walk_acceleration: 0.5
   aerial_drift: 0.2
-  run_maxspeed: 0.07
-  walk_maxspeed: 0.035
-  max_airdriftspeed: 0.035
+  run_maxspeed: 0.15
+  walk_maxspeed: 0.08
+  max_airdriftspeed: 0.075
   current_speed_h: 0
   current_speed_v: 0
-  airstate: 0
+  jump_initial_velocity: 0.15
   controller: {fileID: 0}
 --- !u!136 &1868036782
 CapsuleCollider:
@@ -687,6 +687,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e694dc62a1a54ce46a1a1e6e77b956d4, type: 3}
   m_PrefabInstance: {fileID: 1935839791}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1868036785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868036772}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6509bc036ec693843a84b2a5a67f9a3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animid: jumpsquat
+--- !u!114 &1868036786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868036772}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e312b516f5d0d2746a17c08a13679743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animid: jump
 --- !u!1001 &1935839791
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -716,7 +742,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e694dc62a1a54ce46a1a1e6e77b956d4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.47
+      value: 13.35
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e694dc62a1a54ce46a1a1e6e77b956d4, type: 3}
       propertyPath: m_LocalPosition.z

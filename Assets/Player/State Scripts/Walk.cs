@@ -27,6 +27,11 @@ namespace Player {
         void PhysicsHandler() {
             int facing_dir = animator.GetInteger("facing_direction");
 
+            if(CheckAnimationTransition())
+            {
+                ApplyHorizontalFriction(player.ground_friction);
+            }
+
             if(facing_dir > 0)
             {
                 if(player.current_speed_h < player.walk_maxspeed)
@@ -59,10 +64,18 @@ namespace Player {
         void InputHandler() {
             int facing_dir = animator.GetInteger("facing_direction");
             int inputDir = GetDirectionHeld();
+
+            if(CheckJumpInput())
+            {
+                EnterJumpSquat();
+                return;
+            }
+
             if(CheckRunInput())
             {
                 EnterRun();
             }
+
             else if (GetDirectionHeld() == 0)
             {
                 EnterIdle();

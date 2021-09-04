@@ -7,12 +7,12 @@ namespace Player {
     {
         public bool CheckRunInput()
         {
-            if(Input.GetKey("left shift"))
-            {
-                return true;
-            } else {
-                return false;
-            }
+            return Input.GetKey("left shift");
+        }
+
+        public bool CheckJumpInput()
+        {
+            return Input.GetKey("space");
         }
 
         public int GetDirectionHeld()
@@ -40,18 +40,13 @@ namespace Player {
             return (currentTransition.duration > 0);
         }
 
-        public void RayCastGround()
+        public bool RayCastGround()
         {
             PlayerController player = GetComponent<PlayerController>();
             CapsuleCollider collider = GetComponent<CapsuleCollider>();
             float offset = 0.1f;
             Debug.DrawRay(collider.bounds.center, Vector3.down * (collider.bounds.extents.y + offset));
-            if(Physics.Raycast(collider.bounds.center, Vector3.down, collider.bounds.extents.y + offset))
-            {
-                player.airstate = false;
-            } else {
-                player.airstate = true;
-            }
+            return (Physics.Raycast(collider.bounds.center, Vector3.down, collider.bounds.extents.y + offset));
         }
 
         public void ReverseFacingDirection()
@@ -114,7 +109,6 @@ namespace Player {
         }
         public void EnterFall()
         {
-            print("enter fall");
             this.enabled = false;
             GetComponent<Fall>().enabled = true;
         }
@@ -135,9 +129,20 @@ namespace Player {
         }
         public void EnterLanding()
         {
-            print("enter landing");
             this.enabled = false;
             GetComponent<Landing>().enabled = true;
+        }
+
+        public void EnterJumpSquat()
+        {
+            this.enabled = false;
+            GetComponent<JumpSquat>().enabled = true;
+        }
+
+        public void EnterJump()
+        {
+            this.enabled = false;
+            GetComponent<Jump>().enabled = true;
         }
     }
 }

@@ -38,6 +38,13 @@ namespace Player {
         void InputHandler() {
             int inputDir = GetDirectionHeld();
             int facing_direction = animator.GetInteger("facing_direction");
+
+            if(CheckJumpInput())
+            {
+                EnterJumpSquat();
+                return;
+            }
+
             if(inputDir == facing_direction * -1) 
             {
                 ReverseFacingDirection();
