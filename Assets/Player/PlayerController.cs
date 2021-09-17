@@ -24,6 +24,9 @@ namespace Player {
     [HideInInspector] public bool airstate;
     public CharacterController controller;
 
+    [SerializeField]
+    PlayerState[] playerStates;
+
     void Start() {
       //initialize components
       controller = GetComponent<CharacterController>();

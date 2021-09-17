@@ -18,7 +18,7 @@ namespace Player {
     void PhysicsHandler() {
       if (!jumpVelocityApplied) {
         jumpVelocityApplied = true;
-        player.current_speed_v = player.jump_aerial_initial_velocity;
+        player.current_speed_v = player.jump_aerial_initial_velocity * Time.deltaTime;
       } else {
         ApplyGravity(player.gravity);
         ApplyHorizontalFriction(player.air_friction);

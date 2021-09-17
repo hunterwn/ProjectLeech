@@ -986,6 +986,7 @@ GameObject:
   - component: {fileID: 7983658583364804948}
   - component: {fileID: 7983658583364804956}
   - component: {fileID: 7983658583364804949}
+  - component: {fileID: 7983658583364804950}
   - component: {fileID: 7983658583364804958}
   - component: {fileID: 7983658583364804957}
   - component: {fileID: 7983658583364804947}
@@ -993,7 +994,6 @@ GameObject:
   - component: {fileID: 7983658583364804945}
   - component: {fileID: 7983658583364804944}
   - component: {fileID: 7983658583364804951}
-  - component: {fileID: 7983658583364804950}
   - component: {fileID: 7983658583364804938}
   - component: {fileID: 7983658583364804937}
   - component: {fileID: 7983658583364804936}
@@ -1088,6 +1088,39 @@ CapsuleCollider:
   m_Height: 6
   m_Direction: 1
   m_Center: {x: 0, y: 2.9, z: 0}
+--- !u!114 &7983658583364804950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7983658583364804959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bc6d62b513829c468786c5cc90b983e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravity: 0.3
+  ground_friction: 0.3
+  air_friction: 0.05
+  run_acceleration: 0.6
+  walk_acceleration: 0.5
+  aerial_drift: 0.2
+  run_maxspeed: 0.15
+  walk_maxspeed: 0.08
+  max_airdriftspeed: 0.075
+  jump_initial_velocity: 15
+  jump_aerial_initial_velocity: 18
+  jumpSquatFrames: 5
+  max_jumps: 2
+  current_speed_h: 0
+  current_speed_v: 0
+  jumps_left: 0
+  airstate: 0
+  controller: {fileID: 0}
+  playerStates:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &7983658583364804958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1206,36 +1239,6 @@ MonoBehaviour:
   player: {fileID: 0}
   animator: {fileID: 0}
   coll: {fileID: 0}
-  controller: {fileID: 0}
---- !u!114 &7983658583364804950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7983658583364804959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bc6d62b513829c468786c5cc90b983e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gravity: 0.3
-  ground_friction: 0.3
-  air_friction: 0.05
-  run_acceleration: 0.6
-  walk_acceleration: 0.5
-  aerial_drift: 0.2
-  run_maxspeed: 0.15
-  walk_maxspeed: 0.08
-  max_airdriftspeed: 0.075
-  jump_initial_velocity: 0.1
-  jump_aerial_initial_velocity: 0.12
-  jumpSquatFrames: 5
-  max_jumps: 2
-  current_speed_h: 0
-  current_speed_v: 0
-  jumps_left: 0
-  airstate: 0
   controller: {fileID: 0}
 --- !u!114 &7983658583364804938
 MonoBehaviour:
@@ -2529,7 +2532,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 311
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
