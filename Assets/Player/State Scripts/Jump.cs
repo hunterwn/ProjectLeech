@@ -19,7 +19,7 @@ namespace Player {
     void PhysicsHandler() {
       if (!jumpVelocityApplied) {
         jumpVelocityApplied = true;
-        player.current_speed_v = player.jump_initial_velocity * Time.deltaTime;
+        player.current_speed_v = player.jump_initial_velocity;
 
       } else {
         ApplyGravity(player.gravity);
