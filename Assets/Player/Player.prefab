@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1228713784008930270
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6909622619696941115}
+  m_Layer: 3
+  m_Name: Skeleton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6909622619696941115
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228713784008930270}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7983658584540926599}
+  m_Father: {fileID: 7983658583364804939}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &7983658582609525574
 GameObject:
   m_ObjectHideFlags: 0
@@ -997,7 +1028,7 @@ GameObject:
   - component: {fileID: 7983658583364804938}
   - component: {fileID: 7983658583364804937}
   - component: {fileID: 7983658583364804936}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1016,7 +1047,7 @@ Transform:
   m_LocalScale: {x: 0.34, y: 0.34, z: 0.34}
   m_Children:
   - {fileID: 7983658583296988939}
-  - {fileID: 7983658584540926599}
+  - {fileID: 6909622619696941115}
   - {fileID: 7983658584670729871}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1118,9 +1149,7 @@ MonoBehaviour:
   jumps_left: 0
   airstate: 0
   controller: {fileID: 0}
-  playerStates:
-  - {fileID: 0}
-  - {fileID: 0}
+  playerStates: []
 --- !u!114 &7983658583364804958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2340,13 +2369,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7983658584540926592}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0.008685369, y: -0.16532516, z: 0.11293848}
-  m_LocalScale: {x: 339.44135, y: 339.44135, z: 339.44135}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: 0.008685369, y: -0.16532522, z: 0.11293847}
+  m_LocalScale: {x: 339.44135, y: 339.44138, z: 339.44138}
   m_Children:
   - {fileID: 7983658583891855495}
-  m_Father: {fileID: 7983658583364804939}
-  m_RootOrder: 1
+  m_Father: {fileID: 6909622619696941115}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7983658584607235376
 GameObject:

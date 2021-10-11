@@ -47,7 +47,7 @@ namespace Player {
       }
 
       // Move player based on current speed values
-      Vector3 move = transform.right * -current_speed_h + transform.up * current_speed_v;
+      Vector3 move = transform.forward * current_speed_h + transform.up * current_speed_v;
       controller.Move(move);
     }
   }
