@@ -19,6 +19,7 @@ public class EnvironmentTurnPlayer : MonoBehaviour {
   private Vector3 center;
   private float radius;
   private float[] rotSnapPoints = {0f, 30f, 45f, 60f, 90f};
+  private bool objInTrigger = false;
 
   // Start is called before the first frame update
   void Start() {
@@ -37,16 +38,8 @@ public class EnvironmentTurnPlayer : MonoBehaviour {
     radius = Mathf.Abs(turnEndPos.position.z - turnStartPos.position.z);
   }
 
-  private void OnTriggerEnter(Collider other) {
-    if (other.gameObject == objToTurn) {
-      objToTurn.transform.eulerAngles = Vector3.up * snapAngle(objToTurn.transform.rotation.eulerAngles.y);
-    }
-  }
-
-  private void OnTriggerStay(Collider other) {
-    if (other.gameObject == objToTurn) {
-      objToTurn = other.gameObject;
-
+  private void FixedUpdate() {
+    if (objInTrigger) {
       Vector3 preferredPlayerPos = playerPositionBetweenPoints();
       playerController.Move(preferredPlayerPos - objToTurn.transform.position);
 
@@ -55,8 +48,16 @@ public class EnvironmentTurnPlayer : MonoBehaviour {
     }
   }
 
+  private void OnTriggerEnter(Collider other) {
+    if (other.gameObject == objToTurn) {
+		  objInTrigger = true;
+      objToTurn.transform.eulerAngles = Vector3.up * snapAngle(objToTurn.transform.rotation.eulerAngles.y);
+    }
+  }
+
   private void OnTriggerExit(Collider other) {
     if (other.gameObject == objToTurn) {
+      objInTrigger = false;
       objToTurn.transform.eulerAngles = Vector3.up * snapAngle(objToTurn.transform.rotation.eulerAngles.y);
     }
   }
