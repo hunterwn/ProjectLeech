@@ -39,7 +39,6 @@ public class EnvironmentTurnPlayer : MonoBehaviour {
 
   private void OnTriggerEnter(Collider other) {
     if (other.gameObject == objToTurn) {
-      Debug.Log(snapAngle(objToTurn.transform.rotation.eulerAngles.y));
       objToTurn.transform.eulerAngles = Vector3.up * snapAngle(objToTurn.transform.rotation.eulerAngles.y);
     }
   }
@@ -51,7 +50,7 @@ public class EnvironmentTurnPlayer : MonoBehaviour {
       Vector3 preferredPlayerPos = playerPositionBetweenPoints();
       playerController.Move(preferredPlayerPos - objToTurn.transform.position);
 
-      float newPlayerAngle = playerAngleBetweenPoints();
+      float newPlayerAngle = playerAngleBetweenPoints(preferredPlayerPos);
       objToTurn.transform.eulerAngles = Vector3.up * (turnStartPos.rotation.eulerAngles.y + newPlayerAngle);
     }
   }
@@ -91,13 +90,13 @@ public class EnvironmentTurnPlayer : MonoBehaviour {
     return new Vector2(x, y);
   }
 
-  private float playerAngleBetweenPoints() {
+  private float playerAngleBetweenPoints(Vector3 preferredPlayerPos) {
     // Radius of turn is determined by the x
     float R = radius;
-    float x = objToTurn.transform.position.x - center.x;
+    float x = preferredPlayerPos.x - center.x;
 
     // Handle asymptotes of derivative
-    float delta = 0.1f;
+    float delta = 0.001f;
     if (Mathf.Abs(x) > R - delta && Mathf.Abs(x) < R + delta) {
       return Mathf.Sign(x) * -90;
     }
