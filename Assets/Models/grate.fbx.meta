@@ -1,8 +1,32 @@
 fileFormatVersion: 2
-guid: f9280872f8b4125ae90516a1948cc99d
+guid: 61831d264c74cd0268b6610b3fb7b42c
 ModelImporter:
   serializedVersion: 20200
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: 5984496454500463648
+    second: Open
+  - first:
+      74: 1007095770567677685
+    second: Close
+  - first:
+      74: 5794914113994241800
+    second: GrateAction
+  - first:
+      74: 8719809092679562828
+    second: Idle|Close
+  - first:
+      74: 2087145378740716525
+    second: Idle|Idle
+  - first:
+      74: 5190254732320243413
+    second: Idle|Open
+  - first:
+      74: -3100369314251171874
+    second: Idle
+  - first:
+      74: 2480511225606706420
+    second: Idle|Idle.001
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -45,7 +69,7 @@ ModelImporter:
     importLights: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
-    generateSecondaryUV: 1
+    generateSecondaryUV: 0
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
@@ -73,7 +97,7 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
-  importAnimation: 0
+  importAnimation: 1
   humanDescription:
     serializedVersion: 3
     human: []
@@ -92,7 +116,7 @@ ModelImporter:
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
