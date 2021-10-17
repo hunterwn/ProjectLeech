@@ -110,7 +110,7 @@ public class Controller2D : RaycastController {
 		for (int i = 0; i < verticalRayCount; i ++) {
 
 			Vector3 rayOrigin = (directionY == -1)?raycastOrigins.bottomLeft:raycastOrigins.topLeft;
-			rayOrigin += Vector3.right * (verticalRaySpacing * i + moveAmount.x);
+			rayOrigin += gameObject.transform.right * (verticalRaySpacing * i + moveAmount.x);
 			RaycastHit hit;
 
 			Debug.DrawRay(rayOrigin, Vector3.up * directionY, Color.red);
