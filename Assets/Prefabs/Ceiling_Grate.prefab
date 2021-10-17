@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 5765256075351224631}
   - component: {fileID: 9123684687745047360}
   - component: {fileID: 5091337321346577606}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: grate_r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,7 +304,7 @@ GameObject:
   - component: {fileID: 7295891787215673072}
   - component: {fileID: 6220875380041923946}
   - component: {fileID: 2074578481445843979}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: grate_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}

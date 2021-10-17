@@ -302,7 +302,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 157846, guid: a4c18952442944083b1fddc06ba477c2, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 409034, guid: a4c18952442944083b1fddc06ba477c2, type: 3}
       propertyPath: m_RootOrder
@@ -472,6 +472,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grate
       objectReference: {fileID: 0}
+    - target: {fileID: 2323691566739392887, guid: 8351aa8300669d38ead6c8a4409165e4, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2952473508636110932, guid: 8351aa8300669d38ead6c8a4409165e4, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3608037928919661642, guid: 8351aa8300669d38ead6c8a4409165e4, type: 3}
       propertyPath: m_Controller
       value: 
@@ -483,6 +491,14 @@ PrefabInstance:
     - target: {fileID: 3864665806280058114, guid: 8351aa8300669d38ead6c8a4409165e4, type: 3}
       propertyPath: m_Controller
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6280451842377115180, guid: 8351aa8300669d38ead6c8a4409165e4, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7091725320130331115, guid: 8351aa8300669d38ead6c8a4409165e4, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8052576190966883791, guid: 8351aa8300669d38ead6c8a4409165e4, type: 3}
       propertyPath: m_Controller

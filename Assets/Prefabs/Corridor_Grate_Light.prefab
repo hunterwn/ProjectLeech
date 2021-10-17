@@ -424,6 +424,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1099268295259946181}
     m_Modifications:
+    - target: {fileID: 647024153395672369, guid: 37cb50a0f5dc477f6910c1005d32c2e9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4447526991526744822, guid: 37cb50a0f5dc477f6910c1005d32c2e9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4708566688295170479, guid: 37cb50a0f5dc477f6910c1005d32c2e9, type: 3}
       propertyPath: m_Name
       value: Grate_Light
