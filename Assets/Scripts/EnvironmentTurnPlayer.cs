@@ -1,12 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnvironmentTurnPlayer : MonoBehaviour {
-  enum Direction { left, right };
-  [SerializeField]
-  Direction turnDirection = Direction.right;
-
   [SerializeField]
   Transform turnStartPos;
   [SerializeField]
@@ -32,8 +26,6 @@ public class EnvironmentTurnPlayer : MonoBehaviour {
       }
     }
 
-    playerController = objToTurn.GetComponent<CharacterController>();
-
     center = new Vector3(turnEndPos.position.x, turnStartPos.position.y, turnStartPos.position.z);
     radius = Mathf.Abs(turnEndPos.position.z - turnStartPos.position.z);
   }
@@ -41,7 +33,7 @@ public class EnvironmentTurnPlayer : MonoBehaviour {
   private void FixedUpdate() {
     if (objInTrigger) {
       Vector3 preferredPlayerPos = playerPositionBetweenPoints();
-      playerController.Move(preferredPlayerPos - objToTurn.transform.position);
+      objToTurn.transform.position = preferredPlayerPos;
 
       float newPlayerAngle = playerAngleBetweenPoints(preferredPlayerPos);
       objToTurn.transform.eulerAngles = Vector3.up * (turnStartPos.rotation.eulerAngles.y + newPlayerAngle);

@@ -38,7 +38,7 @@ public class Controller2D : RaycastController {
 			VerticalCollisions (ref moveAmount);
 		}
 
-		transform.Translate (moveAmount);
+		transform.Translate(0, moveAmount.y, moveAmount.x);
 
 		if (standingOnPlatform) {
 			collisions.below = true;

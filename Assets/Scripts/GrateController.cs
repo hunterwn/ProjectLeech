@@ -19,7 +19,6 @@ public class GrateController : MonoBehaviour {
 	}
 
 	private void OnTriggerEnter(Collider other) {
-		Debug.Log("enterred trigger");
 		if (other.tag == "Player") {
 			PlayerInTrigger = true;
 		}
