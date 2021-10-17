@@ -41,6 +41,7 @@ namespace Player {
       GetComponent<Entry>().enabled = true;
     }
     void Update() {
+
       //Keep player attached to the ground
       if (controller.isGrounded && Mathf.Abs(current_speed_v) < 0.01f) {
         current_speed_v = -0.01f;
