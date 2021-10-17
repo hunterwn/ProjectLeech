@@ -159,6 +159,18 @@ using UnityEngine;
       animator.SetBool(this.animid, false);
       GetComponent<Landing>().enabled = true;
     }
+    public void EnterWallSlide() {
+      Animator animator = GetComponent<Animator>();
+      this.enabled = false;
+      if(player.controller.collisions.left)
+      {
+        SetFacingDirection(1);
+      } else {
+        SetFacingDirection(-1);
+      }
+      animator.SetBool(this.animid, false);
+      GetComponent<WallSlide>().enabled = true;
+    }
 
     // public void EnterJumpSquat() {
     //   Animator animator = GetComponent<Animator>();

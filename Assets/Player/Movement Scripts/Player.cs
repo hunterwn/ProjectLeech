@@ -28,7 +28,7 @@ public class Player : MonoBehaviour {
 	public Controller2D controller;
 
 	public Vector2 directionalInput;
-	bool wallSliding;
+	public bool wallSliding;
 	int wallDirX;
 
 	public Vector2 input_prev;
