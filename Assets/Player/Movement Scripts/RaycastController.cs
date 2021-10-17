@@ -37,7 +37,7 @@ public class RaycastController : MonoBehaviour {
         Vector3 size = collider.size;
         Vector3 center = collider.bounds.center;
 
-        Vector3 xoffset = (gameObject.transform.right * size.x) / 4;
+        Vector3 xoffset = (gameObject.transform.forward * size.x) / 4;
         Vector3 yoffset = (Vector3.up * size.y) / 6;
 
         //blue

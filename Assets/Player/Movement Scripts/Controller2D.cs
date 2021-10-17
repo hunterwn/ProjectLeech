@@ -61,12 +61,12 @@ public class Controller2D : RaycastController {
 
 			Vector3 horizontal = raycastOrigins.bottomLeft - raycastOrigins.bottomRight;
 
-			Debug.DrawRay(raycastOrigins.bottomRight, gameObject.transform.right * directionX,Color.white);
-			Debug.DrawRay(raycastOrigins.bottomLeft, gameObject.transform.right * directionX,Color.blue);
-			Debug.DrawRay(raycastOrigins.topLeft, gameObject.transform.right * directionX,Color.green);
-			Debug.DrawRay(raycastOrigins.topRight, gameObject.transform.right * directionX,Color.yellow);
+			Debug.DrawRay(raycastOrigins.bottomRight, gameObject.transform.forward * directionX,Color.white);
+			Debug.DrawRay(raycastOrigins.bottomLeft, gameObject.transform.forward * directionX,Color.blue);
+			Debug.DrawRay(raycastOrigins.topLeft, gameObject.transform.forward * directionX,Color.green);
+			Debug.DrawRay(raycastOrigins.topRight, gameObject.transform.forward * directionX,Color.yellow);
 
-			if (Physics.Raycast(rayOrigin, gameObject.transform.right * directionX, out hit, rayLength, collisionMask)) {
+			if (Physics.Raycast(rayOrigin, gameObject.transform.forward * directionX, out hit, rayLength, collisionMask)) {
 
 				if (hit.distance == 0) {
 					continue;
@@ -110,7 +110,7 @@ public class Controller2D : RaycastController {
 		for (int i = 0; i < verticalRayCount; i ++) {
 
 			Vector3 rayOrigin = (directionY == -1)?raycastOrigins.bottomLeft:raycastOrigins.topLeft;
-			rayOrigin += gameObject.transform.right * (verticalRaySpacing * i + moveAmount.x);
+			rayOrigin += gameObject.transform.forward * (verticalRaySpacing * i + moveAmount.x);
 			RaycastHit hit;
 
 			Debug.DrawRay(rayOrigin, Vector3.up * directionY, Color.red);
