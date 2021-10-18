@@ -35,6 +35,7 @@ MonoBehaviour:
   wallStickTime: 0.25
   controller: {fileID: 0}
   directionalInput: {x: 0, y: 0}
+  wallSliding: 0
   input_prev: {x: 0, y: 0}
 --- !u!114 &1709572478
 MonoBehaviour:
@@ -176,6 +177,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: afa05331a6e3c044b91794647fa3baf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animid: 
+  animator: {fileID: 0}
+  player: {fileID: 0}
+  controller: {fileID: 0}
+--- !u!114 &7850844425253964877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6746491506747053630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b75e61b29622638408ba9068d1df328b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   animid: 

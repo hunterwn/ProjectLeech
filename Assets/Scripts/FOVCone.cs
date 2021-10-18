@@ -62,6 +62,11 @@ public class FOVCone : MonoBehaviour
                     {
                         agent.isStopped = false;
                         agent.SetDestination(Player.transform.position);
+
+
+                        AudioManager am = AudioManager.instance;
+                        am.stop("theme");
+                        am.play("fight");
                     }
                     // Player is no longer within sight.
                     else
