@@ -16,13 +16,14 @@ public class FOVCone : MonoBehaviour
     public GameObject path;
     public float watchDelay;
     public float huntDelay;
+    public Animator animator;
 
     [HideInInspector]
     public List<Transform> visibleTargets = new List<Transform>();
 
-    public float meshResolution;
-    public int edgeResolveIterations;
-    public float edgeDistThreshold;
+    public float meshResolution = 1.0f;
+    public int edgeResolveIterations = 4;
+    public float edgeDistThreshold = 0.5f;
 
     public MeshFilter viewMeshFilter;
     Mesh viewMesh;
@@ -60,12 +61,14 @@ public class FOVCone : MonoBehaviour
                     // If enemy is within sight.
                     if (!(distToTarget < 3.0f))
                     {
+                        animator.SetTrigger("Chomper_Idle");
                         agent.isStopped = false;
                         agent.SetDestination(Player.transform.position);
                     }
                     // Player is no longer within sight.
                     else
                     {
+                        animator.SetTrigger("ChomperWalkForward");
                         agent.SetDestination(path.transform.position);
                         agent.isStopped = true;
                     }
