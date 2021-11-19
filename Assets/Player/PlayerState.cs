@@ -127,6 +127,24 @@ using UnityEngine;
       animator.SetBool(this.animid, false);
       GetComponent<Idle>().enabled = true;
     }
+    public void EnterAttack1() {
+      Animator animator = GetComponent<Animator>();
+      this.enabled = false;
+      animator.SetBool(this.animid, false);
+      GetComponent<Attack1>().enabled = true;
+    }
+    public void EnterAttack2() {
+      Animator animator = GetComponent<Animator>();
+      this.enabled = false;
+      animator.SetBool(this.animid, false);
+      GetComponent<Attack2>().enabled = true;
+    }
+    public void EnterAttack3() {
+      Animator animator = GetComponent<Animator>();
+      this.enabled = false;
+      animator.SetBool(this.animid, false);
+      GetComponent<Attack3>().enabled = true;
+    }
     public void EnterFall() {
       Animator animator = GetComponent<Animator>();
       SetFacingDirection();

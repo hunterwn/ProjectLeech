@@ -20,5 +20,15 @@ public class PlayerInput : MonoBehaviour {
 		if (Input.GetKeyUp (KeyCode.Space)) {
 			player.OnJumpInputUp ();
 		}
+		if(Input.GetKeyDown(KeyCode.Q)) {
+			player.OnAttackInputDown ();
+		} else {
+			player.attackInputDown = false;
+		}
+		if(Input.GetKeyUp(KeyCode.Q)) {
+			player.OnAttackInputUp ();
+		} else {
+			player.attackInputUp = false;
+		}
 	}
 }

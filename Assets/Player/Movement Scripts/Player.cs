@@ -29,6 +29,8 @@ public class Player : MonoBehaviour {
 
 	public Vector2 directionalInput;
 	public bool wallSliding;
+	public bool attackInputDown;
+	public bool attackInputUp;
 	int wallDirX;
 
 	public Vector2 input_prev;
@@ -95,7 +97,14 @@ public class Player : MonoBehaviour {
 			velocity.y = minJumpVelocity;
 		}
 	}
-		
+
+	public void OnAttackInputDown() {
+		attackInputDown = true;
+	}
+
+	public void OnAttackInputUp() {
+		attackInputUp = true;
+	}
 
 	void HandleWallSliding() {
 		wallDirX = (controller.collisions.left) ? -1 : 1;
