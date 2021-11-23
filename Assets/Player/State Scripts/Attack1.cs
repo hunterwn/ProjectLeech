@@ -6,10 +6,10 @@ using UnityEngine;
   public class Attack1 : PlayerState {
 
     private bool attackPressed;
-
-
     public int endFrame = 30;
     public int interruptFrame = 20;
+
+    public float moveAmount = 9999.0f;
     private int faceDir;
 
     void OnEnable() {
@@ -17,6 +17,7 @@ using UnityEngine;
       attackPressed = false;
       this.currentFrame = 0;
       faceDir = GetFacingDirection();
+      player.addedVelocity.x = 7.0f * faceDir;
       if(faceDir == 1)
       {
         hitboxController.CreateHitbox("hand.R", 4);

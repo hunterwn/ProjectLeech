@@ -6,16 +6,12 @@ using UnityEngine;
 
   public class Attack3 : PlayerState {
 
-    public float moveAmount = 0.1f;
-    private Vector2 move;
-
+    public float moveAmount = 10.0f;
     private int faceDir;
     void OnEnable() {
       initializeState("attack3");
       faceDir = GetFacingDirection();
-      move.x = moveAmount * faceDir;
-      move.y = -0.01f;
-
+      player.addedVelocity.x = 10.0f * faceDir;
       if(faceDir == 1)
       {
         hitboxController.CreateHitbox("foot.R", 4);
@@ -26,11 +22,6 @@ using UnityEngine;
 
     void OnDisable() {
       hitboxController.ClearHitboxes();
-    }
-
-    void FixedUpdate() {
-      controller.Move(move, false);
-      move.x *= 0.9f;
     }
 
     void Update() {

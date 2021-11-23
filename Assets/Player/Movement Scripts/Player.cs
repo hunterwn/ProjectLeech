@@ -14,6 +14,7 @@ public class Player : MonoBehaviour {
 	public Vector2 wallJumpClimb;
 	public Vector2 wallJumpOff;
 	public Vector2 wallLeap;
+	public Vector2 addedVelocity;
 
 	public float wallSlideSpeedMax = 3;
 	public float wallStickTime = .25f;
@@ -139,5 +140,11 @@ public class Player : MonoBehaviour {
 		float targetVelocityX = directionalInput.x * moveSpeed;
 		velocity.x = Mathf.SmoothDamp (velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below)?accelerationTimeGrounded:accelerationTimeAirborne);
 		velocity.y += gravity * Time.deltaTime;
+
+		velocity.x += addedVelocity.x;
+		velocity.y += addedVelocity.y;
+
+		addedVelocity.x = 0;
+		addedVelocity.y = 0;
 	}
 }
