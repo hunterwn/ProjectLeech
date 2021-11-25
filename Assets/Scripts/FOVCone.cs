@@ -17,6 +17,8 @@ public class FOVCone : MonoBehaviour
     public float watchDelay;
     public float huntDelay;
     public Animator animator;
+    public Transform[] points;
+    public FollowPath followpath;
 
     [HideInInspector]
     public List<Transform> visibleTargets = new List<Transform>();
@@ -48,6 +50,7 @@ public class FOVCone : MonoBehaviour
 
         for (i = 0; i < targetsInViewRadius.Length; i++)
         {
+            Debug.Log(visibleTargets);
             visibleTargets.Clear();
             Transform target = targetsInViewRadius[i].transform;
             Vector3 dirToTarget = (target.position - transform.position).normalized;
@@ -58,19 +61,28 @@ public class FOVCone : MonoBehaviour
                 // If statement for if there are no objects in between the target and the script utilizer.
                 if (!Physics.Raycast(transform.position, dirToTarget, distToTarget, obstacleMask))
                 {
-                    // If enemy is within sight.
-                    if (!(distToTarget < 3.0f))
-                    {
-                        animator.SetTrigger("Chomper_Idle");
-                        agent.isStopped = false;
-                        agent.SetDestination(Player.transform.position);
-                    }
-                    // Player is no longer within sight.
-                    else
+                    // Player is within sight and proper distance is not reached.
+                    if (!(distToTarget < 2.0f))
                     {
                         animator.SetTrigger("ChomperWalkForward");
-                        agent.SetDestination(path.transform.position);
+                        agent.isStopped = false;
+                        agent.SetDestination(Player.transform.position);
+                        Debug.Log("In Target, in pursuit");
+                    }
+                    // Player is in sight AND within reach
+                    else if (distToTarget <= 2.0f)
+                    {
+                        animator.SetTrigger("ChomperAttack");
+                        agent.destination = followpath.points[0].position;
                         agent.isStopped = true;
+                        Debug.Log("In target, distance reached");
+                    }
+                    // Player has left sight and reach
+                    else
+                    {
+                        agent.destination = followpath.points[0].position;
+                        Debug.Log("Back to path, target no longer in pursuit");
+                        Debug.Log("idk");
                     }
 
                     visibleTargets.Add (target);
