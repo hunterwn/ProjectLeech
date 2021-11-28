@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class ChomperFOVCone : MonoBehaviour
+public class ChomperSightRadius : MonoBehaviour
 {
     public float viewRadius;
     [Range(0,360)]
@@ -14,9 +14,8 @@ public class ChomperFOVCone : MonoBehaviour
     public NavMeshAgent agent;
     public GameObject Player;
     public GameObject path;
-    public bool viewedFlag = false;
-
-    public ChomperController chomperController;
+    public ChomperFOVCone ChomperFOVCone;
+    private float distToTarget;
     public float watchDelay;
 
     [HideInInspector]
@@ -41,45 +40,32 @@ public class ChomperFOVCone : MonoBehaviour
     void FindVisibleTargets()
     {
         int i;
-        float distToTarget;
         Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
 
         for (i = 0; i < targetsInViewRadius.Length; i++)
         {
+            Debug.Log(visibleTargets);
             visibleTargets.Clear();
             Transform target = targetsInViewRadius[i].transform;
             Vector3 dirToTarget = (target.position - transform.position).normalized;
             if ((Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2))
             {
                 distToTarget = Vector3.Distance(transform.position, target.position);
+                Debug.Log(distToTarget);
 
                 // If statement for if there are no objects in between the target and the script utilizer.
                 if (!Physics.Raycast(transform.position, dirToTarget, distToTarget, obstacleMask))
                 {
-                    if (viewedFlag == false)
+                    if (distToTarget >= viewRadius - 1 && ChomperFOVCone.viewedFlag == true)
                     {
+                        ChomperFOVCone.agent.isStopped = false;
+                        ChomperFOVCone.viewedFlag = false;
+                        agent.SetDestination(path.transform.position);
                         AudioManager am = AudioManager.instance;
-                        am.stop("theme");
-                        am.play("fight");
-                        viewedFlag = true;
+                        am.stop("fight");
+                        am.play("theme");
+                        Debug.Log("Back to path, target no longer in pursuit");
                     }
-                    // Player is within sight
-                    agent.speed = 3;
-                    agent.SetDestination(Player.transform.position);
-
-                    if (chomperController.attackTimer >= chomperController.attackCooldown)
-                    {
-                        
-                        chomperController.state.EnterAttack();
-                        agent.speed = 3;
-                    }
-
-                    //if (chomperController.attackTimer < chomperController.attackCooldown && viewedFlag == true)
-                    //{
-                       // agent.speed = 1;
-                   // }
-
-                    visibleTargets.Add (target);
                 }
             }
         }
