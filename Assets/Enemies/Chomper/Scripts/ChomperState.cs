@@ -44,4 +44,10 @@ using UnityEngine;
       animator.SetBool(this.animid, false);
       GetComponent<ChomperAttack>().enabled = true;
     }
+
+    public void EnterHit1() {
+      this.enabled = false;
+      animator.SetBool(this.animid, false);
+      GetComponent<ChomperHit1>().enabled = true;
+    }
   }

@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class ChomperController : MonoBehaviour
 {
-     public Transform[] points;
+    public Transform[] points;
     private int destPoint = 0;
     private NavMeshAgent agent;
     public bool brake = false;
@@ -14,6 +14,7 @@ public class ChomperController : MonoBehaviour
     public float minWalkVelocity = 1.0f;
     private Vector3 previousPosition;
     public float velocity;
+    public bool damaged;
 
     public int attackTimer;
     public int attackCooldown = 400;
@@ -23,6 +24,7 @@ public class ChomperController : MonoBehaviour
         animController = GetComponent<ChomperState>();
         previousPosition = transform.position;
         velocity = 0.0f;
+        damaged = false;
 
         // Disabling auto-braking allows for continuous movement
         // between points (ie, the agent doesn't slow down as it
@@ -32,6 +34,12 @@ public class ChomperController : MonoBehaviour
         GotoNextPoint();
     }
 
+    public void OnTakeDamage()
+    {
+        damaged = true;
+        Debug.Log("take damage");
+        state.EnterHit1();
+    }
 
     void GotoNextPoint() {
         // Returns if no points have been set up

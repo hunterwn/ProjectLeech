@@ -330,7 +330,6 @@ GameObject:
   - component: {fileID: 1173901906839241636}
   - component: {fileID: 1173901906839241637}
   - component: {fileID: 1173901906839241638}
-  - component: {fileID: 1173901906839241639}
   - component: {fileID: 1173901906839241632}
   - component: {fileID: 1173901906839241633}
   - component: {fileID: 1173901906839241634}
@@ -410,11 +409,14 @@ MonoBehaviour:
   wallJumpClimb: {x: 10, y: 20}
   wallJumpOff: {x: 20, y: 10}
   wallLeap: {x: 15, y: 15}
+  addedVelocity: {x: 0, y: 0}
   wallSlideSpeedMax: 3
   wallStickTime: 0.25
   controller: {fileID: 0}
   directionalInput: {x: 0, y: 0}
   wallSliding: 0
+  attackInputDown: 0
+  attackInputUp: 0
   input_prev: {x: 0, y: 0}
 --- !u!114 &1173901906839241626
 MonoBehaviour:
@@ -466,6 +468,8 @@ MonoBehaviour:
   animator: {fileID: 0}
   player: {fileID: 0}
   controller: {fileID: 0}
+  hitboxController: {fileID: 0}
+  currentFrame: 0
 --- !u!114 &1173901906839241637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -482,6 +486,8 @@ MonoBehaviour:
   animator: {fileID: 0}
   player: {fileID: 0}
   controller: {fileID: 0}
+  hitboxController: {fileID: 0}
+  currentFrame: 0
 --- !u!114 &1173901906839241638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -498,22 +504,8 @@ MonoBehaviour:
   animator: {fileID: 0}
   player: {fileID: 0}
   controller: {fileID: 0}
---- !u!114 &1173901906839241639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1173901906839241644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6436fc814133e174db36d509bfe6f45e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animid: 
-  animator: {fileID: 0}
-  player: {fileID: 0}
-  controller: {fileID: 0}
+  hitboxController: {fileID: 0}
+  currentFrame: 0
 --- !u!114 &1173901906839241632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -530,6 +522,8 @@ MonoBehaviour:
   animator: {fileID: 0}
   player: {fileID: 0}
   controller: {fileID: 0}
+  hitboxController: {fileID: 0}
+  currentFrame: 0
 --- !u!114 &1173901906839241633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -546,6 +540,8 @@ MonoBehaviour:
   animator: {fileID: 0}
   player: {fileID: 0}
   controller: {fileID: 0}
+  hitboxController: {fileID: 0}
+  currentFrame: 0
 --- !u!114 &1173901906839241634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -562,6 +558,8 @@ MonoBehaviour:
   animator: {fileID: 0}
   player: {fileID: 0}
   controller: {fileID: 0}
+  hitboxController: {fileID: 0}
+  currentFrame: 0
 --- !u!114 &1173901906839241635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -578,6 +576,8 @@ MonoBehaviour:
   animator: {fileID: 0}
   player: {fileID: 0}
   controller: {fileID: 0}
+  hitboxController: {fileID: 0}
+  currentFrame: 0
 --- !u!54 &1173901906839241630
 Rigidbody:
   m_ObjectHideFlags: 0
