@@ -7,14 +7,18 @@ public class ChomperController : MonoBehaviour
 {
     public Transform[] points;
     private int destPoint = 0;
-    private NavMeshAgent agent;
+    public NavMeshAgent agent;
     public bool brake = false;
     public ChomperState animController;
+    public HitboxController hitboxController;
+    public ChomperDamageController damageController;
+    public ChomperFOVCone FOVCone;
     public ChomperState state;
     public float minWalkVelocity = 1.0f;
     private Vector3 previousPosition;
     public float velocity;
     public bool damaged;
+    public bool dead;
 
     public int attackTimer;
     public int attackCooldown = 400;
@@ -22,9 +26,13 @@ public class ChomperController : MonoBehaviour
     void Start () {
         agent = GetComponent<NavMeshAgent>();
         animController = GetComponent<ChomperState>();
-        previousPosition = transform.position;
+        hitboxController = GetComponent<HitboxController>();
+        hitboxController = GetComponent<HitboxController>();
+        damageController = GetComponent<ChomperDamageController>();
+        FOVCone = GetComponent<ChomperFOVCone>();
         velocity = 0.0f;
         damaged = false;
+        dead = false;
 
         // Disabling auto-braking allows for continuous movement
         // between points (ie, the agent doesn't slow down as it
@@ -32,23 +40,6 @@ public class ChomperController : MonoBehaviour
         agent.autoBraking = brake;
 
         GotoNextPoint();
-    }
-
-    public void OnTakeDamage()
-    {
-        if(hp == 3)
-        {
-            Debug.Log("EnterHit1");
-            state.EnterHit1();
-        } else if (hp == 2)
-        {
-            Debug.Log("EnterHit2");
-            state.EnterHit2();
-        } else if (hp == 1) {
-            Debug.Log("EnterHit3");
-            state.EnterHit3();
-        }
-        hp = (hp == 1) ? 3 : hp - 1;
     }
 
     void GotoNextPoint() {

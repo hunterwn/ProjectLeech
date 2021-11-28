@@ -7,12 +7,18 @@ public class ChomperHit3 : ChomperState {
   public int stateLength;
   void OnEnable() {
     initializeState("hit3");
-    Debug.Log("hit3");
+    chomperController.agent.isStopped = true;
+    chomperController.dead = true;
   }
   void Update() {
     if(CheckAnimationFinished())
     {
-      EnterIdle();
+      chomperController.damageController.hurtbox.enabled = false;
     }
+  }
+
+  public override void OnTakeDamage()
+  {
+    return;
   }
 }

@@ -31,7 +31,7 @@ public class ChomperFOVCone : MonoBehaviour
 
     IEnumerator FindTargetsWithDelay (float watchDelay)
     {
-        while (true)
+        while (!chomperController.dead)
         {
             yield return new WaitForSeconds(watchDelay);
             FindVisibleTargets();
@@ -239,6 +239,9 @@ public class ChomperFOVCone : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        DrawFieldOfView();
+        if(!chomperController.dead)
+        {
+            DrawFieldOfView();
+        }
     }
 }

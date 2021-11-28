@@ -7,7 +7,10 @@ public class ChomperHit2 : ChomperState {
   public int stateLength;
   void OnEnable() {
     initializeState("hit2");
-    Debug.Log("hit2");
+    chomperController.agent.isStopped = true;
+  }
+  void OnDisable() {
+    chomperController.agent.isStopped = false;
   }
   void Update() {
     if(CheckAnimationFinished())

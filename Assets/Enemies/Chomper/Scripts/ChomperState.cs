@@ -19,6 +19,22 @@ using UnityEngine;
       chomperController.state = this;
     }
 
+    public virtual void OnTakeDamage()
+    {
+        if(chomperController.hp == 3)
+        {
+            EnterHit1();
+        } else if (chomperController.hp == 2)
+        {
+            EnterHit2();
+        } else if (chomperController.hp == 1) 
+        {
+            EnterHit3();
+        }
+
+        chomperController.hp = (chomperController.hp == 1) ? 3 : chomperController.hp - 1;
+    }
+
     public bool CheckAnimationFinished() {
       return (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !animator.IsInTransition(0));
     }
