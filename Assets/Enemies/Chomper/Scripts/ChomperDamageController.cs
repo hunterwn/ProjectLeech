@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class ChomperDamageController : MonoBehaviour
 {
-    public BoxCollider hurtbox;
+    public CapsuleCollider hurtbox;
     public ChomperController chomperController;
 
     private void OnTriggerEnter(Collider trigger) {
