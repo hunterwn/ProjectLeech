@@ -5,8 +5,6 @@ public class EnvironmentTurnPlayer : MonoBehaviour {
   Transform turnStartPos;
   [SerializeField]
   Transform turnEndPos;
-
-  [SerializeField]
   private GameObject objToTurn;
   private CharacterController playerController;
 
@@ -17,15 +15,14 @@ public class EnvironmentTurnPlayer : MonoBehaviour {
 
   // Start is called before the first frame update
   void Start() {
-    var requiredAttributes = new[] {turnStartPos, turnEndPos};
+    // var requiredAttributes = new[] {turnStartPos, turnEndPos};
 
-    foreach (var item in requiredAttributes) {
-      if (item == null) {
-        Debug.LogError("Define attributes for " + this.GetType().ToString());
-        UnityEditor.EditorApplication.isPlaying = false;
-      }
-    }
-
+    // foreach (var item in requiredAttributes) {
+    //   if (item == null) {
+    //     Debug.LogError("Define attributes for " + this.GetType().ToString());
+    //     UnityEditor.EditorApplication.isPlaying = false;
+    //   }
+    // }
     center = new Vector3(turnEndPos.position.x, turnStartPos.position.y, turnStartPos.position.z);
     radius = Mathf.Abs(turnEndPos.position.z - turnStartPos.position.z);
   }
@@ -41,6 +38,10 @@ public class EnvironmentTurnPlayer : MonoBehaviour {
   }
 
   private void OnTriggerEnter(Collider other) {
+    if (other.tag == "Player") {
+      objToTurn = other.gameObject;
+    }
+    
     if (other.gameObject == objToTurn) {
 		  objInTrigger = true;
       objToTurn.transform.eulerAngles = Vector3.up * snapAngle(objToTurn.transform.rotation.eulerAngles.y);
@@ -73,7 +74,7 @@ public class EnvironmentTurnPlayer : MonoBehaviour {
     Vector2 closestPoint = closestPointToCircle(new Vector2(p1.x, p1.z));
 
     Vector3 preferredPos = new Vector3(closestPoint.x, objToTurn.transform.position.y, closestPoint.y);
-    return preferredPos + center;
+    return preferredPos + new Vector3(center.x, 0, center.z);
   }
 
   private Vector2 closestPointToCircle(Vector2 p1) {
