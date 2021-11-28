@@ -11,6 +11,7 @@ public class Sound {
   public float volume = 1f;
   [Range(0.1f, 3f)]
   public float pitch = 1f;
+  public bool loop = false;
 
   [HideInInspector]
   public AudioSource source;
@@ -20,5 +21,6 @@ public class Sound {
     this.source.clip = this.clip;
     this.source.volume = this.volume;
     this.source.pitch = this.pitch;
+    this.source.loop = this.loop;
   }
 }

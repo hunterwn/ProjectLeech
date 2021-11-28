@@ -43,6 +43,13 @@ public class Player : MonoBehaviour {
 		GetComponent<Entry>().enabled = true;
 	}
 
+	void Update() {
+		if (Input.GetKeyDown(KeyCode.Backspace)) {
+			transform.position = new Vector3(0, 0.5f, 0);
+			transform.Rotate(-transform.rotation.eulerAngles);
+		}
+	}
+
 	void FixedUpdate() {
 		CalculateVelocity ();
 		HandleWallSliding ();

@@ -15,15 +15,14 @@ public class EnvironmentTurnPlayer : MonoBehaviour {
 
   // Start is called before the first frame update
   void Start() {
-    var requiredAttributes = new[] {turnStartPos, turnEndPos};
+    // var requiredAttributes = new[] {turnStartPos, turnEndPos};
 
-    foreach (var item in requiredAttributes) {
-      if (item == null) {
-        Debug.LogError("Define attributes for " + this.GetType().ToString());
-        UnityEditor.EditorApplication.isPlaying = false;
-      }
-    }
-
+    // foreach (var item in requiredAttributes) {
+    //   if (item == null) {
+    //     Debug.LogError("Define attributes for " + this.GetType().ToString());
+    //     UnityEditor.EditorApplication.isPlaying = false;
+    //   }
+    // }
     center = new Vector3(turnEndPos.position.x, turnStartPos.position.y, turnStartPos.position.z);
     radius = Mathf.Abs(turnEndPos.position.z - turnStartPos.position.z);
   }
