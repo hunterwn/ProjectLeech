@@ -9,6 +9,7 @@ public class ChomperHit3 : ChomperState {
     initializeState("hit3");
     chomperController.agent.isStopped = true;
     chomperController.dead = true;
+    chomperController.deathSFX.Play();
   }
   void Update() {
     if(CheckAnimationFinished())

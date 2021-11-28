@@ -8,6 +8,7 @@ public class ChomperHit2 : ChomperState {
   void OnEnable() {
     initializeState("hit2");
     chomperController.agent.isStopped = true;
+    chomperController.damage2SFX.Play();
   }
   void OnDisable() {
     chomperController.agent.isStopped = false;

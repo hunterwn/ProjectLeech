@@ -20,6 +20,10 @@ public class ChomperController : MonoBehaviour
     public bool damaged;
     public bool dead;
 
+    //sfx
+    public AudioSource damage1SFX;
+    public AudioSource damage2SFX;
+    public AudioSource deathSFX;
     public int attackTimer;
     public int attackCooldown = 400;
     public int hp = 3;
