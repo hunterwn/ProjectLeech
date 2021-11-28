@@ -18,7 +18,7 @@ public class ChomperController : MonoBehaviour
 
     public int attackTimer;
     public int attackCooldown = 400;
-
+    public int hp = 3;
     void Start () {
         agent = GetComponent<NavMeshAgent>();
         animController = GetComponent<ChomperState>();
@@ -36,9 +36,19 @@ public class ChomperController : MonoBehaviour
 
     public void OnTakeDamage()
     {
-        damaged = true;
-        Debug.Log("take damage");
-        state.EnterHit1();
+        if(hp == 3)
+        {
+            Debug.Log("EnterHit1");
+            state.EnterHit1();
+        } else if (hp == 2)
+        {
+            Debug.Log("EnterHit2");
+            state.EnterHit2();
+        } else if (hp == 1) {
+            Debug.Log("EnterHit3");
+            state.EnterHit3();
+        }
+        hp = (hp == 1) ? 3 : hp - 1;
     }
 
     void GotoNextPoint() {
