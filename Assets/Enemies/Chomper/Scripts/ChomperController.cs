@@ -9,15 +9,18 @@ public class ChomperController : MonoBehaviour
     private int destPoint = 0;
     private NavMeshAgent agent;
     public bool brake = false;
-    private ChomperState animcontroller;
+    public ChomperState animController;
     public ChomperState state;
     public float minWalkVelocity = 1.0f;
     private Vector3 previousPosition;
     public float velocity;
 
+    public int attackTimer;
+    public int attackCooldown = 400;
+
     void Start () {
         agent = GetComponent<NavMeshAgent>();
-        animcontroller = GetComponent<ChomperState>();
+        animController = GetComponent<ChomperState>();
         previousPosition = transform.position;
         velocity = 0.0f;
 
@@ -57,6 +60,6 @@ public class ChomperController : MonoBehaviour
         velocity = curMove.magnitude / Time.deltaTime;
         previousPosition = transform.position;
 
-        Debug.Log(velocity);
+        attackTimer++;
     }
 }
