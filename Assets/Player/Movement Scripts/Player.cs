@@ -3,40 +3,56 @@ using System.Collections;
 
 [RequireComponent (typeof (Controller2D))]
 public class Player : MonoBehaviour {
-
 	public float maxJumpHeight = 10;
 	public float minJumpHeight = 5;
 	public float timeToJumpApex = .4f;
 	float accelerationTimeAirborne = .2f;
 	float accelerationTimeGrounded = .1f;
 	float moveSpeed = 6;
-
-	public Vector2 wallJumpClimb;
-	public Vector2 wallJumpOff;
-	public Vector2 wallLeap;
-	public Vector2 addedVelocity;
-
 	public float wallSlideSpeedMax = 3;
 	public float wallStickTime = .25f;
 	float timeToWallUnstick;
-	public bool invincible;
-
 	float gravity;
 	float maxJumpVelocity;
 	float minJumpVelocity;
+	public int health;
+
+	[HideInInspector]
+	public bool movementDisabled;
+	[HideInInspector]
+	public bool freezePosition;
+	[HideInInspector]
 	Vector3 velocity;
-	float velocityXSmoothing;
-
-	public Controller2D controller;
-
-	public Vector2 directionalInput;
-	public bool wallSliding;
-	public bool attackInputDown;
-	public bool attackInputUp;
+	[HideInInspector]
 	int wallDirX;
-
+	[HideInInspector]
+	float velocityXSmoothing;
+	[HideInInspector]
+	public bool dead;
+	[HideInInspector]
+	public bool wallSliding;
+	[HideInInspector]
+	public bool attackInputDown;
+	[HideInInspector]
+	public bool attackInputUp;
+	[HideInInspector]
+	public PlayerState state;
+	[HideInInspector]
 	public Vector2 input_prev;
-
+	[HideInInspector]
+	public Controller2D controller;
+	[HideInInspector]
+	public Vector2 directionalInput;
+	[HideInInspector]
+	public bool invincible;
+	[HideInInspector]
+	public Vector2 wallJumpClimb;
+	[HideInInspector]
+	public Vector2 wallJumpOff;
+	[HideInInspector]
+	public Vector2 wallLeap;
+	[HideInInspector]
+	public Vector2 addedVelocity;
 	void Start() {
 		controller = GetComponent<Controller2D> ();
 
@@ -45,6 +61,9 @@ public class Player : MonoBehaviour {
 		minJumpVelocity = Mathf.Sqrt (2 * Mathf.Abs (gravity) * minJumpHeight);
 
 		invincible = false;
+		dead = false;
+		movementDisabled = false;
+		freezePosition = false;
 
 		GetComponent<Entry>().enabled = true;
 	}
@@ -60,7 +79,10 @@ public class Player : MonoBehaviour {
 		CalculateVelocity ();
 		HandleWallSliding ();
 
-		controller.Move (velocity * Time.deltaTime, directionalInput);
+		if(!freezePosition)
+		{
+			controller.Move (velocity * Time.deltaTime, directionalInput);
+		}
 		
 		if (controller.collisions.above || controller.collisions.below) {
 			if (controller.collisions.slidingDownMaxSlope) {
@@ -147,7 +169,14 @@ public class Player : MonoBehaviour {
 	}
 
 	void CalculateVelocity() {
-		float targetVelocityX = directionalInput.x * moveSpeed;
+		float targetVelocityX;
+		if(!movementDisabled)
+		{
+			targetVelocityX = directionalInput.x * moveSpeed;
+		} else {
+			targetVelocityX = 0.0f;
+		}
+		
 		velocity.x = Mathf.SmoothDamp (velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below)?accelerationTimeGrounded:accelerationTimeAirborne);
 		velocity.y += gravity * Time.deltaTime;
 

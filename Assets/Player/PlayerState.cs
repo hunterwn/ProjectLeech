@@ -21,6 +21,7 @@ using UnityEngine;
       this.hitboxController = GetComponent<HitboxController>();
       this.currentFrame = 0;
       animator.SetBool(this.animid, true);
+      player.state = this;
     }
 
     public bool CheckAnimationFinished() {
@@ -52,7 +53,6 @@ using UnityEngine;
       GetComponent<Idle>().enabled = true;
     }
     public void EnterAttack1() {
-      
       this.enabled = false;
       animator.SetBool(this.animid, false);
       GetComponent<Attack1>().enabled = true;
@@ -100,5 +100,11 @@ using UnityEngine;
       }
       animator.SetBool(this.animid, false);
       GetComponent<WallSlide>().enabled = true;
+    }
+
+    public void EnterDeath() {
+      this.enabled = false;
+      animator.SetBool(this.animid, false);
+      GetComponent<Death>().enabled = true;
     }
   }

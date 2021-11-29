@@ -20,6 +20,12 @@ public class PlayerDamageController : MonoBehaviour
                 damageflash = player.DamageFlash(Color.white, 1.0f, 0.05f);
                 player.invincible = true;
                 StartCoroutine(damageflash);
+
+                player.health -= 1;
+                if(player.health <= 0)
+                {
+                    player.state.EnterDeath();
+                }
             }
         }
     }
