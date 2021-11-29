@@ -1,30 +1,67 @@
 using UnityEngine;
+using UnityEngine.AI;
 
+[ExecuteAlways]
 public class EnvironmentTurnPlayer : MonoBehaviour {
+  [SerializeField]
+  bool showHelpers = false;
   [SerializeField]
   Transform turnStartPos;
   [SerializeField]
   Transform turnEndPos;
+  enum Direction {
+    Left,
+    Right
+  }
+  [SerializeField]
+  private Direction turnDir = Direction.Right;
   private GameObject objToTurn;
-  private CharacterController playerController;
 
   private Vector3 center;
   private float radius;
-  private float[] rotSnapPoints = {0f, 30f, 45f, 60f, 90f};
+  private float snapPosInterval = 0.25f;
+  private float snapAngleInterval = 15f;
   private bool objInTrigger = false;
 
-  // Start is called before the first frame update
-  void Start() {
-    // var requiredAttributes = new[] {turnStartPos, turnEndPos};
+  // Helpers
+  GameObject centerHelper;
+  GameObject circleHelper;
 
-    // foreach (var item in requiredAttributes) {
-    //   if (item == null) {
-    //     Debug.LogError("Define attributes for " + this.GetType().ToString());
-    //     UnityEditor.EditorApplication.isPlaying = false;
-    //   }
-    // }
-    center = new Vector3(turnEndPos.position.x, turnStartPos.position.y, turnStartPos.position.z);
-    radius = Mathf.Abs(turnEndPos.position.z - turnStartPos.position.z);
+  void Start() {
+    initializeTurnCircle();
+  }
+
+  private void initializeTurnCircle() {
+    float centerX;
+    float centerY;
+    if (this.turnDir == Direction.Right) {
+      centerX = turnEndPos.position.x;
+      centerY = turnStartPos.position.z;
+    }
+    else {
+      centerX = turnStartPos.position.x;
+      centerY = turnEndPos.position.z;
+    }
+    this.center = new Vector3(centerX, turnStartPos.position.y, centerY);
+    this.radius = Mathf.Abs(turnEndPos.position.z - turnStartPos.position.z);
+  }
+
+  private void Update() {
+    if (this.showHelpers) {
+      initializeTurnCircle();
+      if (centerHelper == null && circleHelper == null) {
+        this.centerHelper = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        this.centerHelper.transform.position = this.center;
+
+        this.circleHelper = new GameObject { name = "Circle" };
+        this.circleHelper.transform.position = this.center + Vector3.up*0.1f;
+        this.circleHelper.DrawCircle(this.radius, .1f);
+      }
+    }
+    else {
+      GameObject.DestroyImmediate(this.centerHelper);
+      GameObject.DestroyImmediate(this.circleHelper);
+    }
   }
 
   private void FixedUpdate() {
@@ -33,7 +70,8 @@ public class EnvironmentTurnPlayer : MonoBehaviour {
       objToTurn.transform.position = preferredPlayerPos;
 
       float newPlayerAngle = playerAngleBetweenPoints(preferredPlayerPos);
-      objToTurn.transform.eulerAngles = Vector3.up * (turnStartPos.rotation.eulerAngles.y + newPlayerAngle);
+      float sign = this.turnDir == Direction.Right ? -1 : 1;
+      objToTurn.transform.eulerAngles = Vector3.up * (newPlayerAngle + 180f);
     }
   }
 
@@ -44,7 +82,6 @@ public class EnvironmentTurnPlayer : MonoBehaviour {
     
     if (other.gameObject == objToTurn) {
 		  objInTrigger = true;
-      objToTurn.transform.eulerAngles = Vector3.up * snapAngle(objToTurn.transform.rotation.eulerAngles.y);
     }
   }
 
@@ -52,21 +89,19 @@ public class EnvironmentTurnPlayer : MonoBehaviour {
     if (other.gameObject == objToTurn) {
       objInTrigger = false;
       objToTurn.transform.eulerAngles = Vector3.up * snapAngle(objToTurn.transform.rotation.eulerAngles.y);
+      objToTurn.transform.position = snapPosition(objToTurn.transform.position);
     }
   }
 
-  private float snapAngle(float angle) {
-    float closestAngle = rotSnapPoints[0];
-    float smallestDist = Mathf.Abs(rotSnapPoints[0] - angle);
-    for (int i = 1; i < rotSnapPoints.Length; i++) {
-      float dist = Mathf.Abs(angle - rotSnapPoints[i]);
-      if (smallestDist > dist) {
-        smallestDist = dist;
-        closestAngle = Mathf.Sign(angle) * rotSnapPoints[i];
-      }
-    }
+  private Vector3 snapPosition(Vector3 pos) {
+    float snappedPosX = Mathf.Round(pos.x / this.snapPosInterval) * this.snapPosInterval;
+    float snappedPosZ = Mathf.Round(pos.z / this.snapPosInterval) * this.snapPosInterval;
+    return new Vector3(snappedPosX, pos.y, snappedPosZ);
+  }
 
-    return closestAngle; 
+  private float snapAngle(float angle) {
+    float snappedAngle = Mathf.Round(angle / this.snapAngleInterval) * this.snapAngleInterval;
+    return snappedAngle;
   }
 
   private Vector3 playerPositionBetweenPoints() {
@@ -78,25 +113,30 @@ public class EnvironmentTurnPlayer : MonoBehaviour {
   }
 
   private Vector2 closestPointToCircle(Vector2 p1) {
-    float R = radius;
+    float R = this.radius;
     float x = Mathf.Sign(p1.x) * Mathf.Sqrt((R*R) / (1 + Mathf.Pow(p1.y / p1.x, 2)));
     float y = Mathf.Sign(p1.y) * Mathf.Sqrt(Mathf.Pow(R, 2) - Mathf.Pow(x, 2));
+    
     return new Vector2(x, y);
   }
 
   private float playerAngleBetweenPoints(Vector3 preferredPlayerPos) {
     // Radius of turn is determined by the x
-    float R = radius;
+    float R = this.radius;
     float x = preferredPlayerPos.x - center.x;
+    float y = preferredPlayerPos.z - center.z;
 
     // Handle asymptotes of derivative
-    float delta = 0.001f;
-    if (Mathf.Abs(x) > R - delta && Mathf.Abs(x) < R + delta) {
-      return Mathf.Sign(x) * -90;
-    }
+    // float delta = 0.001f;
+    // if (Mathf.Abs(x) > R - delta && Mathf.Abs(x) < R + delta) {
+    //   return Mathf.Sign(x) * -90;
+    // }
 
     float derivative = -x / Mathf.Sqrt(R*R - x*x);
-    float angle = Mathf.Atan(derivative) * 180 / Mathf.PI;
+    float angle = 90f - Mathf.Atan(derivative) * 180 / Mathf.PI;
+    if (y < 0f) {
+      angle = 360 - angle;
+    }
     return angle;
   }
 }
