@@ -2990,7 +2990,6 @@ GameObject:
   - component: {fileID: 5167164069859087666}
   - component: {fileID: 5167164069859087669}
   - component: {fileID: 5167164069859087670}
-  - component: {fileID: 5167164069859087671}
   - component: {fileID: 5167164069859087668}
   m_Layer: 0
   m_Name: Chomper
@@ -3080,37 +3079,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   brake: 0
---- !u!114 &5167164069859087671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5167164069220903402}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb1f51e476ef23b43893dd228763709e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  viewRadius: 4
-  viewAngle: 60
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 8
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 256
-  agent: {fileID: 5167164069859087668}
-  Player: {fileID: 0}
-  path: {fileID: 0}
-  watchDelay: 0.5
-  huntDelay: 2
-  visibleTargets: []
-  meshResolution: 1
-  edgeResolveIterations: 4
-  edgeDistThreshold: 0.5
-  viewMeshFilter: {fileID: 5167164070908113611}
-  speed: 5
 --- !u!195 &5167164069859087668
 NavMeshAgent:
   m_ObjectHideFlags: 0

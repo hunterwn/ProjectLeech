@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class fpslimit : MonoBehaviour
+public class Fpslimit : MonoBehaviour
 {
 
     private IEnumerator coroutine;

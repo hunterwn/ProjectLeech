@@ -58,9 +58,9 @@ public class ChomperFOVCone : MonoBehaviour
                 {
                     if (viewedFlag == false)
                     {
-                        AudioManager am = AudioManager.instance;
-                        am.stop("theme");
-                        am.play("fight");
+                        //AudioManager am = AudioManager.instance;
+                        //am.stop("theme");
+                        //am.play("fight");
                         viewedFlag = true;
                     }
                     // Player is within sight
