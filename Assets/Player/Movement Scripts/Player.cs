@@ -19,6 +19,7 @@ public class Player : MonoBehaviour {
 	public float wallSlideSpeedMax = 3;
 	public float wallStickTime = .25f;
 	float timeToWallUnstick;
+	public bool invincible;
 
 	float gravity;
 	float maxJumpVelocity;
@@ -154,4 +155,39 @@ public class Player : MonoBehaviour {
 		addedVelocity.x = 0;
 		addedVelocity.y = 0;
 	}
+
+     public IEnumerator DamageFlash(Color flashColor, float flashTime, float flashSpeed)
+     {
+		SkinnedMeshRenderer renderer = GameObject.Find("Character").GetComponent<SkinnedMeshRenderer>();
+		Material mat = renderer.material;
+		Color originalColor = mat.color;
+		Color c = originalColor;
+		c.a = 0.5f;
+		flashColor.a = 0.5f;
+		
+		renderer.material = null;
+		renderer.material.color = flashColor;
+
+		float flashingFor = 0.0f;
+		int alternator = 0;
+		while(flashingFor < flashTime)
+		{
+			yield return new WaitForSeconds(flashSpeed);
+			if(alternator % 2 == 0)
+			{
+				renderer.material = mat;
+				renderer.material.color = c;
+			} else {
+				renderer.material = null;
+				renderer.material.color = flashColor;
+			}
+			alternator += 1;
+			flashingFor += flashSpeed;
+		}
+
+		renderer.material = mat;
+		renderer.material.color = originalColor;
+
+		invincible = false;        
+     }
 }
