@@ -548,8 +548,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fb10800e46d18542902f380523f175b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showHelpers: 0
   turnStartPos: {fileID: 8073292263549995883}
   turnEndPos: {fileID: 8073292264690163877}
+  turnDir: 1
 --- !u!1 &8073292264690163876
 GameObject:
   m_ObjectHideFlags: 0
