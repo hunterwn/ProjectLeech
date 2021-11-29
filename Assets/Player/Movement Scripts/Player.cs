@@ -44,6 +44,8 @@ public class Player : MonoBehaviour {
 		maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
 		minJumpVelocity = Mathf.Sqrt (2 * Mathf.Abs (gravity) * minJumpHeight);
 
+		invincible = false;
+
 		GetComponent<Entry>().enabled = true;
 	}
 
