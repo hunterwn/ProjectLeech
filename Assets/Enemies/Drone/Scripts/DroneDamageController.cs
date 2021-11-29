@@ -1,18 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class DroneDamageController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
+    public CapsuleCollider hurtbox;
+    public DroneController droneController;
         
-    }
-
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider trigger) 
     {
-        
+        if(trigger.gameObject.CompareTag("hitbox"))
+        {
+            droneController.state.OnTakeDamage();
+        }
     }
 }
