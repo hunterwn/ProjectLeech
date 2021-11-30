@@ -28,7 +28,7 @@ public class Health : MonoBehaviour
                 bars[i].sprite = emptyBar;
             }
 
-            if (i < numOfBars)
+            if (i < currentHealth)
             {
                 bars[i].enabled = true;
             }
