@@ -15,6 +15,7 @@ public class DroneFOVCone : MonoBehaviour
     public GameObject Player;
     public GameObject path;
     public bool viewedFlag = false;
+    public bool coneFlag = true;
 
     public DroneController droneController;
     public float watchDelay;
@@ -233,7 +234,7 @@ public class DroneFOVCone : MonoBehaviour
     void LateUpdate()
     {
         
-        if(!droneController.dead)
+        if(!droneController.dead && coneFlag == true)
         {
             DrawFieldOfView();
         }
