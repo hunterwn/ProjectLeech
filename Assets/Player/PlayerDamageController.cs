@@ -22,6 +22,7 @@ public class PlayerDamageController : MonoBehaviour
                 StartCoroutine(damageflash);
 
                 player.health -= 1;
+                
                 if(player.health <= 0)
                 {
                     player.state.EnterDeath();
