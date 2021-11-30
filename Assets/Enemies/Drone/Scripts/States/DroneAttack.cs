@@ -2,17 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DroneAttack : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
+public class DroneAttack : DroneState {
+  void OnEnable() {
+    initializeState("attack");
+  }
+  void Update() {
+    if(CheckAnimationFinished())
     {
-        
+      EnterIdle();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  }
 }

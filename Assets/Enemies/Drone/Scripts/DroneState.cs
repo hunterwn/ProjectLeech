@@ -45,7 +45,7 @@ public class DroneState : MonoBehaviour
       GetComponent<DroneIdle>().enabled = true;
     }
 
-    public void EnterWalk() {
+    public void EnterMove() {
       this.enabled = false;
       animator.SetBool(this.animid, false);
       GetComponent<DroneMove>().enabled = true;

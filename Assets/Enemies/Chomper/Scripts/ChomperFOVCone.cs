@@ -15,6 +15,7 @@ public class ChomperFOVCone : MonoBehaviour
     public GameObject Player;
     public GameObject path;
     public bool viewedFlag = false;
+    public bool coneFlag = true;
 
     public ChomperController chomperController;
     public float watchDelay;
@@ -239,7 +240,7 @@ public class ChomperFOVCone : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if(!chomperController.dead)
+        if(!chomperController.dead && coneFlag == true)
         {
             DrawFieldOfView();
         }

@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DroneIdle : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+public class DroneIdle : DroneState {
+  void OnEnable() {
+    initializeState("idle");
+  }
+  void Update() {
+    if(droneController.velocity > droneController.minWalkVelocity)
     {
-        
+      EnterMove();
     }
+  }
 }
