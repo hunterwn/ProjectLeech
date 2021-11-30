@@ -69,6 +69,11 @@ using UnityEngine;
       animator.SetBool(this.animid, false);
       GetComponent<Attack3>().enabled = true;
     }
+    public void EnterAirKick() {
+      this.enabled = false;
+      animator.SetBool(this.animid, false);
+      GetComponent<AirKick>().enabled = true;
+    }
     public void EnterFall() {
       
       SetFacingDirection();

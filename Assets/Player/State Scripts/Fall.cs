@@ -7,6 +7,11 @@ public class Fall : PlayerState {
     initializeState("fall");
   }
   void Update() {
+    if(player.attackInputDown)
+    {
+      EnterAirKick();
+      return;
+    }
     if (player.controller.collisions.below) {
       EnterLanding();
       return;
@@ -16,5 +21,6 @@ public class Fall : PlayerState {
       EnterWallSlide();
       return;
     }
+    
   }
 }
