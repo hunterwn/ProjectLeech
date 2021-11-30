@@ -22,7 +22,7 @@ public class Player : MonoBehaviour {
 	[HideInInspector]
 	public bool freezePosition;
 	[HideInInspector]
-	Vector3 velocity;
+	public Vector3 velocity;
 	[HideInInspector]
 	int wallDirX;
 	[HideInInspector]
