@@ -18,7 +18,11 @@ public class Walk : PlayerState {
       EnterIdle();
       return;
     }
-    
+    if(player.runHeld)
+    {
+      EnterRun();
+      return;
+    }
     if (player.directionalInput.x != player.input_prev.x)
     {
       EnterWalk();

@@ -52,6 +52,18 @@ using UnityEngine;
       animator.SetBool(this.animid, false);
       GetComponent<Idle>().enabled = true;
     }
+    public void EnterRun() {
+      
+      this.enabled = false;
+      animator.SetBool(this.animid, false);
+      GetComponent<Run>().enabled = true;
+    }
+    public void EnterRunBrake() {
+      
+      this.enabled = false;
+      animator.SetBool(this.animid, false);
+      GetComponent<RunBrake>().enabled = true;
+    }
     public void EnterAttack1() {
       this.enabled = false;
       animator.SetBool(this.animid, false);

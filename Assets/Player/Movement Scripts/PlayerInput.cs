@@ -30,5 +30,21 @@ public class PlayerInput : MonoBehaviour {
 		} else {
 			player.attackInputUp = false;
 		}
+		if(Input.GetKeyDown(KeyCode.LeftShift)) {
+			player.OnRunInputDown();
+		} else {
+			player.runInputDown = false;
+		}
+		if(Input.GetKeyUp(KeyCode.LeftShift)) {
+			player.OnRunInputUp();
+		} else {
+			player.runInputUp = false;
+		}
+		if(Input.GetKey(KeyCode.LeftShift))
+		{
+			player.runHeld = true;
+		} else {
+			player.runHeld = false;
+		}
 	}
 }

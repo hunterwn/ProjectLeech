@@ -8,7 +8,8 @@ public class Player : MonoBehaviour {
 	public float timeToJumpApex = .4f;
 	float accelerationTimeAirborne = .2f;
 	float accelerationTimeGrounded = .1f;
-	float moveSpeed = 6;
+	public float moveSpeed = 6;
+	public float runSpeed = 10;
 	public float wallSlideSpeedMax = 3;
 	public float wallStickTime = .25f;
 	float timeToWallUnstick;
@@ -16,7 +17,9 @@ public class Player : MonoBehaviour {
 	float maxJumpVelocity;
 	float minJumpVelocity;
 	public int health;
-
+	
+	[HideInInspector]
+	public bool runHeld;
 	[HideInInspector]
 	public bool movementDisabled;
 	[HideInInspector]
@@ -35,6 +38,10 @@ public class Player : MonoBehaviour {
 	public bool attackInputDown;
 	[HideInInspector]
 	public bool attackInputUp;
+	[HideInInspector]
+	public bool runInputDown;
+	[HideInInspector]
+	public bool runInputUp;
 	[HideInInspector]
 	public PlayerState state;
 	[HideInInspector]
@@ -137,6 +144,14 @@ public class Player : MonoBehaviour {
 
 	public void OnAttackInputUp() {
 		attackInputUp = true;
+	}
+
+	public void OnRunInputDown() {
+		runInputDown = true;
+	}
+
+	public void OnRunInputUp() {
+		runInputUp = true;
 	}
 
 	void HandleWallSliding() {
