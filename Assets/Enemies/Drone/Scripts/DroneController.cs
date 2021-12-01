@@ -32,7 +32,7 @@ public class DroneController : MonoBehaviour
         animController = GetComponent<DroneState>();
         hitboxController = GetComponent<HitboxController>();
         hitboxController = GetComponent<HitboxController>();
-        damageController = GetComponent<DroneDamageController>();
+        damageController = transform.Find("hurtbox").GetComponent<DroneDamageController>();
         FOVCone = GetComponent<DroneFOVCone>();
         velocity = 0.0f;
         damaged = false;
