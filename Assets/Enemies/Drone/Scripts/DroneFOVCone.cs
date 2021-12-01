@@ -16,9 +16,14 @@ public class DroneFOVCone : MonoBehaviour
     public GameObject path;
     public bool viewedFlag = false;
     public bool coneFlag = true;
+    public GameObject projectile;
+    public GameObject projSpawn;
+    private float projLifespan = 1.0f;
+    public float speed = 4.0f;
 
     public DroneController droneController;
     public float watchDelay;
+    public float shootDelay;
 
     [HideInInspector]
     public List<Transform> visibleTargets = new List<Transform>();
@@ -36,6 +41,29 @@ public class DroneFOVCone : MonoBehaviour
         {
             yield return new WaitForSeconds(watchDelay);
             FindVisibleTargets();
+        }
+    }
+
+    IEnumerator ShootwithDelay (float shootDelay)
+    {
+        while (!droneController.dead)
+        {
+            yield return new WaitForSeconds(shootDelay);
+            ShootProjectile();
+        }
+    }
+
+    void ShootProjectile()
+    {
+
+         
+        if (projLifespan <= 0)
+        {
+            Destroy(projectile);
+        }
+        else
+        {
+            projLifespan -= Time.deltaTime;
         }
     }
 
@@ -67,9 +95,7 @@ public class DroneFOVCone : MonoBehaviour
 
                     if (droneController.attackTimer >= droneController.attackCooldown)
                     {
-                        
-                        //droneController.state.EnterAttack();
-                        //start attack coroutine
+                        ShootProjectile();
                         agent.speed = 3;
                     }
 
@@ -223,7 +249,7 @@ public class DroneFOVCone : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Player = GameObject.FindGameObjectWithTag("Player");
         viewMesh = new Mesh();
         viewMesh.name = "View Mesh";
         viewMeshFilter.mesh = viewMesh;
