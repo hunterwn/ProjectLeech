@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: viewVis
-  m_Shader: {fileID: -6465566751694194690, guid: c28bb37ced75c094faa86ea19e772801, type: 3}
+  m_Shader: {fileID: 4800000, guid: 7252379db4c18b641b517f2c91bb57e1, type: 3}
   m_ShaderKeywords: _DISABLE_DECALS _DISABLE_SSR _DISABLE_SSR_TRANSPARENT _SURFACE_TYPE_TRANSPARENT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -22,6 +22,7 @@ Material:
   - TransparentDepthPrepass
   - TransparentDepthPostpass
   - TransparentBackface
+  - RayTracingPrepass
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -105,6 +106,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SpecGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _TRANSPARENCY_MAP:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -185,8 +190,10 @@ Material:
     - _REFLECTIONS_IOR: 1.52
     - _REFLECTIONS_ROUGHNESS: 1
     - _REFLECTIONS_WEIGHT: 1
+    - _RayTracing: 0
     - _ReceivesSSR: 0
     - _ReceivesSSRTransparent: 0
+    - _RefractionModel: 0
     - _RenderQueueType: 4
     - _RequireSplitLighting: 0
     - _SmoothnessTextureChannel: 0
@@ -213,7 +220,13 @@ Material:
     - _TransparentWritingMotionVec: 0
     - _TransparentZWrite: 0
     - _UVSec: 0
+    - _UseAoMap: 0
+    - _UseColorMap: 0
     - _UseEmissiveIntensity: 0
+    - _UseEmissiveMap: 0
+    - _UseMetallicMap: 0
+    - _UseNormalMap: 0
+    - _UseRoughnessMap: 0
     - _UseShadowThreshold: 0
     - _ZTestDepthEqualForOpaque: 4
     - _ZTestGBuffer: 4
@@ -227,12 +240,15 @@ Material:
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EMISSION_COLOR: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Emissive: {r: 0, g: 0, b: 0, a: 0}
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissiveColorLDR: {r: 0, g: 0, b: 0, a: 1}
     - _REFLECTIONS_COLOR: {r: 1, g: 1, b: 1, a: 1}
     - _TRANSPARENCY: {r: 1, g: 1, b: 1, a: 1}
     - _UnlitColor: {r: 1, g: 1, b: 1, a: 1}
     - _UnlitColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
+    - _UvOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _UvTiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &4352738134278046707
 MonoBehaviour:

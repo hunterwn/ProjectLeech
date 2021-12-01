@@ -16,10 +16,10 @@ public class DroneFOVCone : MonoBehaviour
     public GameObject path;
     public bool viewedFlag = false;
     public bool coneFlag = true;
-    public GameObject projectile;
-    public GameObject projSpawn;
+    public Transform projSpawn;
     private float projLifespan = 1.0f;
     public float speed = 4.0f;
+    public Transform bullet;
 
     public DroneController droneController;
     public float watchDelay;
@@ -55,16 +55,11 @@ public class DroneFOVCone : MonoBehaviour
 
     void ShootProjectile()
     {
+        Transform bulletTransform = Instantiate(bullet, projSpawn.position, Quaternion.identity);
 
+        Vector3 shootDir = Player.transform.position;
          
-        if (projLifespan <= 0)
-        {
-            Destroy(projectile);
-        }
-        else
-        {
-            projLifespan -= Time.deltaTime;
-        }
+        bulletTransform.GetComponent<Bullet>().Setup(shootDir);
     }
 
     void FindVisibleTargets()
