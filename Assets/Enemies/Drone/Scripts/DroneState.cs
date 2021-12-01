@@ -22,13 +22,11 @@ public class DroneState : MonoBehaviour
 
     public virtual void OnTakeDamage()
     {
-        
-        if (droneController.hp == 1)
+        droneController.hp--;
+        if (droneController.hp <= 0)
         {
-            //EnterHit1();
+            droneController.state.EnterDeath();
         }
-
-        droneController.hp = (droneController.hp == 1) ? 3 : droneController.hp - 1;
     }
 
     public bool CheckAnimationFinished() {
@@ -53,5 +51,10 @@ public class DroneState : MonoBehaviour
       this.enabled = false;
       animator.SetBool(this.animid, false);
       GetComponent<DroneMove>().enabled = true;
+    }
+    public void EnterDeath() {
+      this.enabled = false;
+      animator.SetBool(this.animid, false);
+      GetComponent<DroneDeath>().enabled = true;
     }
 }

@@ -204,7 +204,7 @@ public class Player : MonoBehaviour {
 
      public IEnumerator DamageFlash(Color flashColor, float flashTime, float flashSpeed)
      {
-		SkinnedMeshRenderer renderer = GameObject.Find("Character").GetComponent<SkinnedMeshRenderer>();
+		SkinnedMeshRenderer renderer = transform.Find("Character").GetComponent<SkinnedMeshRenderer>();
 		Material mat = renderer.material;
 		Color originalColor = mat.color;
 		Color c = originalColor;
