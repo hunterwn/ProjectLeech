@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class DroneDeath : DroneState {
 
+  public Material dissolve;
+  public MeshRenderer meshrenderer;
+
   public int stateLength;
   void OnEnable() {
     initializeState("death");
@@ -15,6 +18,7 @@ public class DroneDeath : DroneState {
     if(CheckAnimationFinished())
     {
       droneController.damageController.hurtbox.enabled = false;
+      meshrenderer.material = dissolve;
       this.enabled = false;
       return;
     }

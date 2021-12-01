@@ -195,7 +195,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   agent: {fileID: 789066653524489253}
-  Player: {fileID: 0}
+  player: {fileID: 0}
   path: {fileID: 4674837401888964816}
   viewedFlag: 0
   coneFlag: 1
@@ -283,6 +283,8 @@ MonoBehaviour:
   hitboxController: {fileID: 0}
   droneController: {fileID: 0}
   currentFrame: 0
+  dissolve: {fileID: 2100000, guid: ff9cdc7a08405f2e6867453807ce3b00, type: 2}
+  meshrenderer: {fileID: 789066653522324531}
   stateLength: 0
 --- !u!114 &789066653524489307
 MonoBehaviour:
