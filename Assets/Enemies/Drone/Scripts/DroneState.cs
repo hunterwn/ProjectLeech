@@ -25,7 +25,7 @@ public class DroneState : MonoBehaviour
         
         if (droneController.hp == 1)
         {
-            EnterHit1();
+            //EnterHit1();
         }
 
         droneController.hp = (droneController.hp == 1) ? 3 : droneController.hp - 1;
@@ -44,22 +44,14 @@ public class DroneState : MonoBehaviour
       animator.SetBool(this.animid, false);
       GetComponent<DroneIdle>().enabled = true;
     }
-
-    public void EnterMove() {
+    public void EnterMoveForward() {
       this.enabled = false;
       animator.SetBool(this.animid, false);
       GetComponent<DroneMove>().enabled = true;
     }
-
-    public void EnterAttack() {
+    public void EnterMoveBackward() {
       this.enabled = false;
       animator.SetBool(this.animid, false);
-      GetComponent<DroneAttack>().enabled = true;
-    }
-
-    public void EnterHit1() {
-      this.enabled = false;
-      animator.SetBool(this.animid, false);
-      GetComponent<DroneHit1>().enabled = true;
+      GetComponent<DroneMove>().enabled = true;
     }
 }

@@ -68,7 +68,8 @@ public class DroneFOVCone : MonoBehaviour
                     if (droneController.attackTimer >= droneController.attackCooldown)
                     {
                         
-                        droneController.state.EnterAttack();
+                        //droneController.state.EnterAttack();
+                        //start attack coroutine
                         agent.speed = 3;
                     }
 

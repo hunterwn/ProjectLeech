@@ -10,7 +10,7 @@ public class DroneIdle : DroneState {
   void Update() {
     if(droneController.velocity > droneController.minWalkVelocity)
     {
-      EnterMove();
+      EnterMoveForward();
     }
   }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DroneMove : DroneState {
   void OnEnable() {
-    initializeState("move");
+    initializeState("moveforward");
   }
   void Update() {
     if(droneController.velocity < droneController.minWalkVelocity)
