@@ -12,7 +12,7 @@ using UnityEngine;
     }
     public void CreateHitbox(string boneName, float size)
     {
-        bone = transform.Find(boneName).gameObject;
+        bone = GameObject.Find(boneName);
         SphereCollider hitbox = bone.GetComponent<SphereCollider>();
         if(hitbox == null)
         {

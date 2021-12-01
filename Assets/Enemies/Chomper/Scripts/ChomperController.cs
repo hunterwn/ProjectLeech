@@ -32,7 +32,7 @@ public class ChomperController : MonoBehaviour
         animController = GetComponent<ChomperState>();
         hitboxController = GetComponent<HitboxController>();
         hitboxController = GetComponent<HitboxController>();
-        damageController = GetComponent<ChomperDamageController>();
+        damageController = transform.Find("hurtbox").GetComponent<ChomperDamageController>();
         FOVCone = GetComponent<ChomperFOVCone>();
         velocity = 0.0f;
         damaged = false;
