@@ -317,7 +317,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 272792252}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b153f9457ec271c48a6e9d325861575c, type: 3}
+  m_Script: {fileID: 11500000, guid: 4288bdeb0bdeab744bd0ba4d97222561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &359040532
@@ -463,7 +463,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 359040532}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c40e023fc9af814c860464a5b518181, type: 3}
+  m_Script: {fileID: 11500000, guid: 4288bdeb0bdeab744bd0ba4d97222561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &545327037
@@ -1228,7 +1228,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1876734870}
         m_TargetAssemblyTypeName: DeathScreen, Assembly-CSharp
-        m_MethodName: Respawn
+        m_MethodName: doRespawn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1285,7 +1285,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1876734865}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c40e023fc9af814c860464a5b518181, type: 3}
+  m_Script: {fileID: 11500000, guid: 4288bdeb0bdeab744bd0ba4d97222561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1936962199
