@@ -10,9 +10,9 @@ using UnityEngine;
       int faceDir = GetFacingDirection();
       if(faceDir == 1)
       {
-        hitboxController.CreateHitbox("hand.R", 4);
+        hitboxController.CreateHitbox("foot.L", 4);
       } else {
-        hitboxController.CreateHitbox("hand.L", 4);
+        hitboxController.CreateHitbox("foot.R", 4);
       }
     }
 

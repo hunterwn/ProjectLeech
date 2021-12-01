@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
     int framewait = 0;
     void OnEnable() {
       initializeState("death");
-      player.freezePosition = true;
+      player.movementDisabled = true;
     }
 
     void Update() {
