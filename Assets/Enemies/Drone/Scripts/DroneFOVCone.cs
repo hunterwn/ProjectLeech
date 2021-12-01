@@ -57,7 +57,7 @@ public class DroneFOVCone : MonoBehaviour
     {
         Transform bulletTransform = Instantiate(bullet, projSpawn.position, Quaternion.identity);
 
-        Vector3 shootDir = Player.transform.position;
+        Vector3 shootDir = Player.transform.position - droneController.transform.position;
          
         bulletTransform.GetComponent<Bullet>().Setup(shootDir);
     }

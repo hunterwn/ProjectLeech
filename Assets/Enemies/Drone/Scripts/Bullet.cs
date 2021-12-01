@@ -5,6 +5,8 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
 
+    public float bulletSpeed = 1.5f;
+
     Vector3 shootDir;
 
     // Start is called before the first frame update
@@ -18,8 +20,7 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float moveSpeed = 100.0f;
-        transform.position += shootDir * moveSpeed * Time.deltaTime;
+        transform.position += shootDir * bulletSpeed * Time.deltaTime;
     }
 
     public static float GetAngleFromVectorFloat(Vector3 dir)
@@ -27,7 +28,9 @@ public class Bullet : MonoBehaviour
         dir = dir.normalized;
         float n = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         if (n < 0)
+        {
             n += 360;
+        }
 
         return n;
     }
