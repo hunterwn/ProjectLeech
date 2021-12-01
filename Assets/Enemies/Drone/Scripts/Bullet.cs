@@ -13,7 +13,6 @@ public class Bullet : MonoBehaviour
     public void Setup(Vector3 shootDir)
     {
         this.shootDir = shootDir;
-        transform.eulerAngles = new Vector3(0, 0, GetAngleFromVectorFloat(shootDir));
         Destroy(gameObject, 5.0f);
     }
 
@@ -21,17 +20,5 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         transform.position += shootDir * bulletSpeed * Time.deltaTime;
-    }
-
-    public static float GetAngleFromVectorFloat(Vector3 dir)
-    {
-        dir = dir.normalized;
-        float n = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        if (n < 0)
-        {
-            n += 360;
-        }
-
-        return n;
     }
 }

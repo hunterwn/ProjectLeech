@@ -12,7 +12,7 @@ public class DroneFOVCone : MonoBehaviour
     public LayerMask targetMask;
     public LayerMask obstacleMask;
     public NavMeshAgent agent;
-    public GameObject Player;
+    public Player player;
     public GameObject path;
     public bool viewedFlag = false;
     public bool coneFlag = true;
@@ -56,8 +56,10 @@ public class DroneFOVCone : MonoBehaviour
     void ShootProjectile()
     {
         Transform bulletTransform = Instantiate(bullet, projSpawn.position, Quaternion.identity);
-
-        Vector3 shootDir = Player.transform.position - droneController.transform.position;
+        Vector3 aimPosition = player.transform.position;
+        aimPosition += player.velocity;
+        aimPosition.y += 1.5f;
+        Vector3 shootDir = aimPosition - droneController.transform.position;
          
         bulletTransform.GetComponent<Bullet>().Setup(shootDir);
     }
@@ -86,7 +88,7 @@ public class DroneFOVCone : MonoBehaviour
                     }
                     // Player is within sight
                     agent.speed = 3;
-                    agent.SetDestination(Player.transform.position);
+                    agent.SetDestination(player.transform.position);
 
                     if (droneController.attackTimer >= droneController.attackCooldown)
                     {
@@ -244,7 +246,7 @@ public class DroneFOVCone : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         viewMesh = new Mesh();
         viewMesh.name = "View Mesh";
         viewMeshFilter.mesh = viewMesh;
