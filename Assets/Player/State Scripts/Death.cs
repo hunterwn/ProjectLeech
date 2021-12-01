@@ -16,7 +16,7 @@ using UnityEngine.SceneManagement;
       if(framewait >= 250)
       {
         //show death screen
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("DeathScreen");
       }
     }
   }
