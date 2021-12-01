@@ -341,6 +341,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 622949458220157941}
     m_Modifications:
+    - target: {fileID: 493895413183580577, guid: 099836a198a51d1898323faf3fd887b7, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2435679988044290812, guid: 099836a198a51d1898323faf3fd887b7, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -389,6 +393,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ceiling_Grate
       objectReference: {fileID: 0}
+    - target: {fileID: 8201879338472269638, guid: 099836a198a51d1898323faf3fd887b7, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 099836a198a51d1898323faf3fd887b7, type: 3}
 --- !u!4 &4616404899698306521 stripped
