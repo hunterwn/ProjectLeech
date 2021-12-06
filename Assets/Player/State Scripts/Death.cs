@@ -15,8 +15,26 @@ using UnityEngine.SceneManagement;
 
       if(framewait >= 250)
       {
+        framewait = 0;
         //show death screen
-        SceneManager.LoadScene("DeathScreen");
+
+        SceneManager.LoadScene("DeathScreen", LoadSceneMode.Additive);
+        //SceneManager.LoadScene("DeathScreen");
+
+        transform.position = player.current_checkpoint.transform.position;
+        transform.rotation = player.current_checkpoint.transform.rotation;
+
+        EnterIdle();
+
+        player.movementDisabled = false;
+        player.health = player.startingHealth;
+
+        if(player.current_checkpoint.facing_direction < 0)
+        {
+          animator.Play("IdleL", -1, 0f);
+        } else {
+          animator.Play("IdleR", -1, 0f);
+        }
       }
     }
   }
