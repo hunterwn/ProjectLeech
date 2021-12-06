@@ -6,6 +6,7 @@ public class DroneDeath : DroneState {
 
   public Material dissolve;
   public MeshRenderer meshrenderer;
+  public Transform healthOrb;
 
   public int stateLength;
   void OnEnable() {
@@ -15,18 +16,35 @@ public class DroneDeath : DroneState {
     //droneController.deathSFX.Play();
   }
   void Update() {
-    if(CheckAnimationFinished())
+    if(droneController.dead && CheckAnimationFinished())
     {
+      droneController.dead = false;
       droneController.damageController.hurtbox.enabled = false;
       meshrenderer.material = dissolve;
-      this.enabled = false;
-      return;
+
+      Transform healthOrbTransform = Instantiate(healthOrb, transform.position, Quaternion.identity);
+      StartCoroutine(DelayedDeath());
     }
 
-    if(droneController.dead && droneController.agent.baseOffset > 0.2f)
+    if(droneController.agent.baseOffset > 0.2f)
     {
       droneController.agent.baseOffset -= 0.02f;
     }
+  }
+
+  IEnumerator DelayedDeath()
+  {
+      yield return new WaitForSeconds(1.5f);
+
+      Vector3 orbSpawnPosition = transform.position;
+      orbSpawnPosition.y += 1.2f;
+
+      Transform healthOrbTransform = Instantiate(healthOrb, orbSpawnPosition, Quaternion.identity);
+      StartCoroutine(DelayedDeath());
+
+      yield return new WaitForSeconds(1.5f);
+
+      gameObject.SetActive(false);
   }
 
   public override void OnTakeDamage()

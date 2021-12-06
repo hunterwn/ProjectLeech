@@ -16,7 +16,7 @@ public class Player : MonoBehaviour {
 	float gravity;
 	float maxJumpVelocity;
 	float minJumpVelocity;
-	public int startingHealth;
+	public int maxHealth = 5;
 
 	[HideInInspector]
 	public int health;
@@ -78,7 +78,7 @@ public class Player : MonoBehaviour {
 		movementDisabled = false;
 		freezePosition = false;
 
-		health = startingHealth;
+		health = maxHealth;
 
 		GetComponent<Entry>().enabled = true;
 	}

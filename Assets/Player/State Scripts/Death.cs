@@ -18,7 +18,7 @@ using UnityEngine.SceneManagement;
       if(framewait >= 250)
       {
         framewait = 0;
-        
+
         //show death screen
         deathScreen.SetActive(true);
 
@@ -31,7 +31,7 @@ using UnityEngine.SceneManagement;
         EnterIdle();
 
         player.movementDisabled = false;
-        player.health = player.startingHealth;
+        player.health = player.maxHealth;
 
         if(player.current_checkpoint.facing_direction < 0)
         {

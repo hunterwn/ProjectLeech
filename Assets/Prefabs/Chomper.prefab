@@ -1524,6 +1524,7 @@ MonoBehaviour:
   currentFrame: 0
   dissolve: {fileID: 2100000, guid: ff9cdc7a08405f2e6867453807ce3b00, type: 2}
   meshrenderer: {fileID: 6211848509437567167}
+  healthOrb: {fileID: 4664936296362669816, guid: d59a54ffcffb6e142a29f39d547e90e7, type: 3}
   stateLength: 0
 --- !u!114 &6211848509014689135
 MonoBehaviour:
