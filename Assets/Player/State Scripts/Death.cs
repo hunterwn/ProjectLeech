@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
   public class Death : PlayerState {
+
+    public GameObject deathScreen;
     int framewait = 0;
     void OnEnable() {
       initializeState("death");
@@ -16,10 +18,12 @@ using UnityEngine.SceneManagement;
       if(framewait >= 250)
       {
         framewait = 0;
+        
         //show death screen
+        deathScreen.SetActive(true);
 
-        SceneManager.LoadScene("DeathScreen", LoadSceneMode.Additive);
-        //SceneManager.LoadScene("DeathScreen");
+
+        Time.timeScale = 0;
 
         transform.position = player.current_checkpoint.transform.position;
         transform.rotation = player.current_checkpoint.transform.rotation;

@@ -5,10 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class DeathScreen : MonoBehaviour
 {
+    public GameObject deathScreen;
+
+    void OnEnable() {
+        this.deathScreen = transform.parent.transform.parent.gameObject;
+    }
 
     public void doRespawn()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        Time.timeScale = 1;
+
+        deathScreen.SetActive(false);
     }
 
     public void doExitGame()
