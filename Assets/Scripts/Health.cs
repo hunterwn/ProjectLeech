@@ -20,7 +20,7 @@ public class Health : MonoBehaviour
 
         for (int i = 0; i < bars.Length; i++)
         {
-            if (i < health)
+            if (i < pdc.player.maxHealth)
             {
                 bars[i].sprite = filledBar;
             }
