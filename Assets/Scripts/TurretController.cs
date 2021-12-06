@@ -27,10 +27,16 @@ public class TurretController : MonoBehaviour {
   private float rechargeDuration = 2f;
   [SerializeField]
   private float aimLaserWidth = 0.02f;
-
+  [SerializeField]
+  private int damageAmount = 1;
+  [SerializeField]
+  private float damageDelay = 0.5f;
+  [HideInInspector]
+  private Player player;
   private bool turretDown;
   private float secondsDown;
   private Coroutine shootCoroutine;
+  private Coroutine damageCoroutine;
   private AudioSource soundEffect;
   private Light chargingLight;
   private float endingLightIntensity;
@@ -103,6 +109,7 @@ public class TurretController : MonoBehaviour {
     RaycastHit hit;
     Ray laserRay = new Ray(this.laser.transform.position, transform.forward);
     Physics.Raycast(laserRay, out hit, laserLayerMask.value);
+
     float laserLength = hit.distance;
 
     this.laserBeam.transform.localScale = Vector3.forward * laserLength;
@@ -120,6 +127,38 @@ public class TurretController : MonoBehaviour {
         lights[i].SetActive(true);
       }
     }
+  }
+
+  bool CheckForPlayer()
+  {
+      RaycastHit hit;
+      Ray laserRay = new Ray(this.laser.transform.position, transform.forward);
+      Physics.Raycast(laserRay, out hit, laserLayerMask.value);
+      if (hit.collider.tag == "Player") {
+        if(this.player == null)
+        {
+          this.player = hit.transform.gameObject.GetComponent<Player>();
+        }
+        return true;
+      }
+      return false;
+  }
+
+  IEnumerator DamagePlayer() {
+    while (true) {
+      if(CheckForPlayer() && !player.invincible)
+      {
+        player.TakeDamage(damageAmount, damageDelay);
+      }
+
+      if(!this.isShooting)
+      {
+        break;
+      }
+
+      yield return new WaitForSeconds(0.1f);
+    }
+    yield return null;
   }
 
   IEnumerator ShootLaser() {
@@ -145,7 +184,10 @@ public class TurretController : MonoBehaviour {
 
       // Laser Fire
       this.laser.SetActive(true);
+
+      this.damageCoroutine = StartCoroutine(DamagePlayer());
       yield return new WaitForSeconds(this.shootDuration);
+      StopCoroutine(this.damageCoroutine);
 
       // Laser Off
       this.soundEffect.Stop();

@@ -17,16 +17,7 @@ public class PlayerDamageController : MonoBehaviour
                 Vector3 pushDirection = transform.position - collision.transform.position;
                 player.addedVelocity = pushDirection * 20;
                 
-                damageflash = player.DamageFlash(Color.white, 1.0f, 0.05f);
-                player.invincible = true;
-                StartCoroutine(damageflash);
-
-                player.health -= 1;
-                
-                if(player.health <= 0)
-                {
-                    player.state.EnterDeath();
-                }
+                player.TakeDamage(1, 1.5f);
             }
         }
     }
@@ -37,16 +28,7 @@ public class PlayerDamageController : MonoBehaviour
         {
             if(!player.invincible)
             {
-                damageflash = player.DamageFlash(Color.white, 1.0f, 0.05f);
-                player.invincible = true;
-                StartCoroutine(damageflash);
-
-                player.health -= 1;
-                
-                if(player.health <= 0)
-                {
-                    player.state.EnterDeath();
-                }
+                player.TakeDamage(1, 1.5f);
             }
         }
     }

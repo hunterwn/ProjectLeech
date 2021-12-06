@@ -215,6 +215,18 @@ public class Player : MonoBehaviour {
 		addedVelocity.y = 0;
 	}
 
+	public void TakeDamage(int damage, float invulnDuration)
+	{
+		IEnumerator damageflash = DamageFlash(Color.white, invulnDuration, 0.05f);
+		invincible = true;
+		StartCoroutine(damageflash);
+		health -= damage;
+		if(health <= 0)
+		{
+			state.EnterDeath();
+		}
+	}
+
      public IEnumerator DamageFlash(Color flashColor, float flashTime, float flashSpeed)
      {
 		SkinnedMeshRenderer renderer = transform.Find("Character").GetComponent<SkinnedMeshRenderer>();
