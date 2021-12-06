@@ -8,6 +8,7 @@ TagManager:
   - hurtbox
   - trap
   - HealthOrb
+  - Grate
   layers:
   - Default
   - TransparentFX
