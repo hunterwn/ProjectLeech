@@ -103,6 +103,7 @@ public class TurretController : MonoBehaviour {
     this.laserLight.SetActive(false);
     this.aimLaser.SetActive(false);
     this.aimLaserCurWidth = 0;
+    StopCoroutine(this.damageCoroutine);
   }
 
   private void SetupLaser() {
@@ -151,7 +152,7 @@ public class TurretController : MonoBehaviour {
         break;
       }
 
-      if(CheckForPlayer() && !player.invincible)
+      if(this.isShooting && CheckForPlayer() && !player.invincible)
       {
         player.TakeDamage(damageAmount, damageDelay);
       }

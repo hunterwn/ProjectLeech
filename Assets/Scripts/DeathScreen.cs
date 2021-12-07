@@ -13,6 +13,7 @@ public class DeathScreen : MonoBehaviour
     void OnEnable() {
         this.deathScreen = transform.parent.transform.parent.gameObject;
         Time.timeScale = 0;
+        AudioListener.pause = true;
     }
 
     public void doRespawn()
@@ -20,6 +21,7 @@ public class DeathScreen : MonoBehaviour
         Time.timeScale = 1;
         deathScreen.SetActive(false);
         this.player.Respawn();
+        AudioListener.pause = false;
     }
 
     public void doExitGame()

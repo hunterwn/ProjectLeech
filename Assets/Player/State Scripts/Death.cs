@@ -25,10 +25,6 @@ using UnityEngine.SceneManagement;
 
         //show death screen
         deathScreen.SetActive(true);
-
-        
-
-        Debug.Log("Checkpoint position: " + player.current_checkpoint.transform.position);
       }
     }
   }

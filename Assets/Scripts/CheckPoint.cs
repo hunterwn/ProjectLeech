@@ -9,11 +9,30 @@ public class CheckPoint : MonoBehaviour
 
     public Player player;
 
+    private GameObject canvas;
+
+    private void Start() {
+        this.canvas = GameObject.Find("Canvas");
+        canvas.SetActive(false);
+    }
+
     private void OnCollisionEnter(Collision collision) {
         if(collision.gameObject.tag == "Player")
         {
             this.player = collision.gameObject.GetComponent<Player>();
-            player.current_checkpoint = this;
+
+            if(player.current_checkpoint != this)
+            {
+                player.current_checkpoint = this;
+                StartCoroutine(DisplayText());
+            }
         }
+    }
+
+    IEnumerator DisplayText()
+    {
+        canvas.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        canvas.SetActive(false);
     }
 }
