@@ -5,6 +5,8 @@ using UnityEngine;
 public class Hitbox : MonoBehaviour {
     private SphereCollider coll;
     public float size;
+    public Player player;
+    private Collider last_collider;
     private void OnEnable() {
         if(this.coll == null)
         {
@@ -21,10 +23,16 @@ public class Hitbox : MonoBehaviour {
     }
 
     private void OnTriggerEnter(Collider collider) {
-        if(collider.tag == "Enemy")
+        if(collider != this.last_collider)
         {
-            Enemy enemy = collider.transform.parent.gameObject.GetComponent<Enemy>();
-            enemy.Stun(1.0f);
+            if(collider.tag == "Enemy")
+            {
+                this.last_collider = collider;
+                Enemy enemy = collider.transform.parent.gameObject.GetComponent<Enemy>();
+                enemy.Stun(1.0f);
+
+                player.freeze(0.1f);
+            }
         }
     }
 }

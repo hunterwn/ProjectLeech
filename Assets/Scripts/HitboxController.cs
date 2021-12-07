@@ -8,13 +8,12 @@ using UnityEngine;
     private List<Hitbox> hitboxes;
 
     void Start() {
-        hitboxes = new List<Hitbox>();
+        this.hitboxes = new List<Hitbox>();
         this.player = GetComponent<Player>();
     }
     public void CreateHitbox(string boneName, float size)
     {
-        
-        bone = GameObject.Find(boneName);
+        this.bone = GameObject.Find(boneName);
         Hitbox hitbox = bone.GetComponent<Hitbox>();
         if(hitbox == null)
         {
@@ -23,7 +22,8 @@ using UnityEngine;
         } else {
             hitbox.enabled = true;
         }
-        hitboxes.Add(hitbox);
+        hitbox.player = this.player;
+        this.hitboxes.Add(hitbox);
     }
 
     public void ClearHitboxes()
@@ -31,8 +31,7 @@ using UnityEngine;
         foreach(Hitbox hitbox in hitboxes)
         {
             hitbox.enabled = false;
-            
         }
-        hitboxes.Clear();
+        this.hitboxes.Clear();
     }
   }

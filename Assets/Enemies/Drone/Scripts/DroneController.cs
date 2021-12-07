@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class DroneController : MonoBehaviour
+public class DroneController : Enemy
 {   
     public Transform[] points;
     private int destPoint = 0;
@@ -18,7 +18,6 @@ public class DroneController : MonoBehaviour
     private Vector3 previousPosition;
     public float velocity;
     public bool damaged;
-    public bool dead;
 
     //sfx
     public AudioSource damage1SFX;

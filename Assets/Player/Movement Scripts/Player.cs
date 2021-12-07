@@ -250,6 +250,22 @@ public class Player : MonoBehaviour {
         }
 	}
 
+	public void freeze(float seconds)
+	{
+		StartCoroutine(FreezePlayer(seconds));
+	}
+
+	private IEnumerator FreezePlayer(float seconds)
+    {
+		state.animator.speed = 0;
+		freezePosition = true;
+		this.state.enabled = false;
+		yield return new WaitForSeconds(seconds);
+		this.state.enabled = true;
+		state.animator.speed = 1;
+		freezePosition = false;
+	}
+
      public IEnumerator DamageFlash(Color flashColor, float flashTime, float flashSpeed)
      {
 		SkinnedMeshRenderer renderer = transform.Find("Character").GetComponent<SkinnedMeshRenderer>();
