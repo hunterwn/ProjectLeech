@@ -12,7 +12,7 @@ public class ChomperFOVCone : MonoBehaviour
     public LayerMask targetMask;
     public LayerMask obstacleMask;
     public NavMeshAgent agent;
-    public GameObject Player;
+    public GameObject player;
     public GameObject path;
     public bool viewedFlag = false;
     public bool coneFlag = true;
@@ -65,14 +65,14 @@ public class ChomperFOVCone : MonoBehaviour
                         viewedFlag = true;
                     }
                     // Player is within sight
-                    agent.speed = 3;
-                    agent.SetDestination(Player.transform.position);
+                    agent.speed = 4;
+                    agent.SetDestination(player.transform.position);
 
                     if (chomperController.attackTimer >= chomperController.attackCooldown)
                     {
                         
                         chomperController.state.EnterAttack();
-                        agent.speed = 3;
+                        agent.speed = 4;
                     }
 
                     //if (chomperController.attackTimer < chomperController.attackCooldown && viewedFlag == true)
@@ -230,7 +230,7 @@ public class ChomperFOVCone : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
         viewMesh = new Mesh();
         viewMesh.name = "View Mesh";
         viewMeshFilter.mesh = viewMesh;

@@ -17,7 +17,6 @@ public class DroneFOVCone : MonoBehaviour
     public bool viewedFlag = false;
     public bool coneFlag = true;
     public Transform projSpawn;
-    private float projLifespan = 1.0f;
     public float speed = 4.0f;
     public Transform bullet;
 
