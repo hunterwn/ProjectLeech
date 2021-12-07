@@ -17,6 +17,8 @@ public class Player : MonoBehaviour {
 	float maxJumpVelocity;
 	float minJumpVelocity;
 	public int maxHealth = 5;
+	[HideInInspector]
+	public bool dead = false;
 
 	[HideInInspector]
 	public int health;
@@ -36,8 +38,6 @@ public class Player : MonoBehaviour {
 	int wallDirX;
 	[HideInInspector]
 	float velocityXSmoothing;
-	[HideInInspector]
-	public bool dead;
 	[HideInInspector]
 	public bool wallSliding;
 	[HideInInspector]
@@ -225,6 +225,28 @@ public class Player : MonoBehaviour {
 		{
 			state.EnterDeath();
 		}
+	}
+
+	public void Respawn()
+	{
+		dead = false;
+
+		transform.position = current_checkpoint.transform.position;
+        transform.rotation = current_checkpoint.transform.rotation;
+
+        state.EnterIdle();
+
+        movementDisabled = false;
+		freezePosition = false;
+
+        health = maxHealth;
+
+        if(current_checkpoint.facing_direction < 0)
+        {
+          state.animator.Play("IdleL", -1, 0f);
+        } else {
+          state.animator.Play("IdleR", -1, 0f);
+        }
 	}
 
      public IEnumerator DamageFlash(Color flashColor, float flashTime, float flashSpeed)

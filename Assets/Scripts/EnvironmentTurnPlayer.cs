@@ -16,7 +16,7 @@ public class EnvironmentTurnPlayer : MonoBehaviour {
   [SerializeField]
   private Direction turnDir = Direction.Right;
   private GameObject objToTurn;
-
+  private Player player;
   private Vector3 center;
   private float radius;
   private float snapPosInterval = 0.25f;
@@ -66,6 +66,14 @@ public class EnvironmentTurnPlayer : MonoBehaviour {
 
   private void FixedUpdate() {
     if (objInTrigger) {
+      //Fix bug with player dying in corner
+      if(player.dead)
+      {
+        objToTurn = null;
+        objInTrigger = false;
+        return;
+      }
+
       Vector3 preferredPlayerPos = playerPositionBetweenPoints();
       objToTurn.transform.position = preferredPlayerPos;
 
@@ -77,7 +85,11 @@ public class EnvironmentTurnPlayer : MonoBehaviour {
 
   private void OnTriggerEnter(Collider other) {
     if (other.tag == "Player") {
-      objToTurn = other.gameObject;
+      this.player = other.gameObject.GetComponent<Player>();
+      if(!player.dead)
+      {
+        objToTurn = other.gameObject;
+      }
     }
     
     if (other.gameObject == objToTurn) {

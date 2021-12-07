@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
     void OnEnable() {
       initializeState("death");
       player.movementDisabled = true;
+      player.dead = true;
     }
 
     void Update() {
@@ -19,26 +20,15 @@ using UnityEngine.SceneManagement;
       {
         framewait = 0;
 
+        player.freezePosition = true;
+        player.movementDisabled = true;
+
         //show death screen
         deathScreen.SetActive(true);
 
+        
 
-        Time.timeScale = 0;
-
-        transform.position = player.current_checkpoint.transform.position;
-        transform.rotation = player.current_checkpoint.transform.rotation;
-
-        EnterIdle();
-
-        player.movementDisabled = false;
-        player.health = player.maxHealth;
-
-        if(player.current_checkpoint.facing_direction < 0)
-        {
-          animator.Play("IdleL", -1, 0f);
-        } else {
-          animator.Play("IdleR", -1, 0f);
-        }
+        Debug.Log("Checkpoint position: " + player.current_checkpoint.transform.position);
       }
     }
   }

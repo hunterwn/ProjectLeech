@@ -146,16 +146,16 @@ public class TurretController : MonoBehaviour {
 
   IEnumerator DamagePlayer() {
     while (true) {
-      if(CheckForPlayer() && !player.invincible)
-      {
-        player.TakeDamage(damageAmount, damageDelay);
-      }
-
       if(!this.isShooting)
       {
         break;
       }
 
+      if(CheckForPlayer() && !player.invincible)
+      {
+        player.TakeDamage(damageAmount, damageDelay);
+      }
+      
       yield return new WaitForSeconds(0.1f);
     }
     yield return null;
