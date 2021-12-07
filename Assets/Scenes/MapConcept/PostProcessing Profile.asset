@@ -127,7 +127,7 @@ MonoBehaviour:
     max: 360
   scrollSpeed:
     m_OverrideState: 1
-    m_Value: 2
+    m_Value: 0
     min: 0
   enableBackplate:
     m_OverrideState: 1
