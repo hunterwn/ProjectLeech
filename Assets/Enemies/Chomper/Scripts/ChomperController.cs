@@ -3,22 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class ChomperController : MonoBehaviour
+
+public class ChomperController : Enemy
 {
     public Transform[] points;
     private int destPoint = 0;
+    private bool brake = false;
+    private ChomperState animController;
     public NavMeshAgent agent;
-    public bool brake = false;
-    public ChomperState animController;
+    private Animator animator;
     public HitboxController hitboxController;
     public ChomperDamageController damageController;
     public ChomperFOVCone FOVCone;
     public ChomperState state;
     public float minWalkVelocity = 1.0f;
     private Vector3 previousPosition;
-    public float velocity;
-    public bool damaged;
-    public bool dead;
+    public float velocity = 0.0f;
+    public bool damaged = false;
 
     //sfx
     public AudioSource damage1SFX;
@@ -28,15 +29,13 @@ public class ChomperController : MonoBehaviour
     public int attackCooldown = 400;
     public int hp = 3;
     void Start () {
-        agent = GetComponent<NavMeshAgent>();
-        animController = GetComponent<ChomperState>();
-        hitboxController = GetComponent<HitboxController>();
-        hitboxController = GetComponent<HitboxController>();
-        damageController = transform.Find("hurtbox").GetComponent<ChomperDamageController>();
-        FOVCone = GetComponent<ChomperFOVCone>();
-        velocity = 0.0f;
-        damaged = false;
-        dead = false;
+        this.agent = GetComponent<NavMeshAgent>();
+        this.animController = GetComponent<ChomperState>();
+        this.animator = animController.animator;
+        this.hitboxController = GetComponent<HitboxController>();
+        this.hitboxController = GetComponent<HitboxController>();
+        this.damageController = transform.Find("hurtbox").GetComponent<ChomperDamageController>();
+        this.FOVCone = GetComponent<ChomperFOVCone>();
 
         // Disabling auto-braking allows for continuous movement
         // between points (ie, the agent doesn't slow down as it
@@ -61,6 +60,22 @@ public class ChomperController : MonoBehaviour
         destPoint = (destPoint + 1) % points.Length;
     }
 
+    public override IEnumerator StunEnemy(float frames)
+    {
+        this.stunned = true;
+        this.FOVCone.enabled = false;
+        this.agent.isStopped = true;
+        if(!dead){
+            this.animator.Play("Chomper_Hit1", -1, 0f);
+        }
+        yield return new WaitForSeconds(frames);
+        if(!dead)
+        {
+            this.stunned = false;
+            this.agent.isStopped = false;
+            this.FOVCone.enabled = true;
+        }
+    }
 
     void Update () {
         // Choose the next destination point when the agent gets

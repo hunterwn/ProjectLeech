@@ -29,9 +29,10 @@ using UnityEngine;
             EnterHit2();
         } else if (chomperController.hp == 1) 
         {
+            chomperController.dead = true;
             EnterHit3();
+            this.animator.Play("Chomper_Hit3", -1, 0f);
         }
-
         chomperController.hp = (chomperController.hp == 1) ? 3 : chomperController.hp - 1;
     }
 

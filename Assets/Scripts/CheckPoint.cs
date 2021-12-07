@@ -8,13 +8,8 @@ public class CheckPoint : MonoBehaviour
     public int facing_direction;
 
     public Player player;
-
-    private GameObject canvas;
-
-    private void Start() {
-        this.canvas = GameObject.Find("Canvas");
-        canvas.SetActive(false);
-    }
+    [SerializeField]
+    public GameObject canvas;
 
     private void OnCollisionEnter(Collision collision) {
         if(collision.gameObject.tag == "Player")
