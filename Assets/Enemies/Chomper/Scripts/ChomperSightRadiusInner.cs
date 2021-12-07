@@ -43,14 +43,12 @@ public class ChomperSightRadiusInner : MonoBehaviour
 
         for (i = 0; i < targetsInViewRadius.Length; i++)
         {
-            Debug.Log(visibleTargets);
             visibleTargets.Clear();
             Transform target = targetsInViewRadius[i].transform;
             Vector3 dirToTarget = (target.position - transform.position).normalized;
             if ((Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2))
             {
                 distToTarget = Vector3.Distance(transform.position, target.position);
-                Debug.Log("In Range Inner");
                 agent.SetDestination(player.transform.position);
                 ChomperFOVCone.agent.isStopped = false;
                 ChomperFOVCone.viewedFlag = true;

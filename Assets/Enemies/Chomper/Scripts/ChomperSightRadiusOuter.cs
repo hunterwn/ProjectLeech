@@ -44,14 +44,12 @@ public class ChomperSightRadiusOuter : MonoBehaviour
 
         for (i = 0; i < targetsInViewRadius.Length; i++)
         {
-            Debug.Log(visibleTargets);
             visibleTargets.Clear();
             Transform target = targetsInViewRadius[i].transform;
             Vector3 dirToTarget = (target.position - transform.position).normalized;
             if ((Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2))
             {
                 distToTarget = Vector3.Distance(transform.position, target.position);
-                Debug.Log(distToTarget);
 
                 // If statement for if there are no objects in between the target and the script utilizer.
                 if (!Physics.Raycast(transform.position, dirToTarget, distToTarget, obstacleMask))
@@ -64,7 +62,6 @@ public class ChomperSightRadiusOuter : MonoBehaviour
                         AudioManager am = AudioManager.instance;
                         am.stop("fight");
                         am.play("theme");
-                        Debug.Log("Back to path, target no longer in pursuit");
                     }
                 }
             }

@@ -28,7 +28,7 @@ public class PlayerDamageController : MonoBehaviour
         {
             if(!player.invincible)
             {
-                player.TakeDamage(1, 1.5f);
+                player.TakeDamage(1, 0.3f);
             }
         }
     }
