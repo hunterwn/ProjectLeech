@@ -43,7 +43,8 @@ GameObject:
   m_Component:
   - component: {fileID: 789066653013494160}
   - component: {fileID: 789066653013494162}
-  - component: {fileID: 789066653013494163}
+  - component: {fileID: 8374919111963392365}
+  - component: {fileID: 101843396078521288}
   m_Layer: 0
   m_Name: hurtbox
   m_TagString: Enemy
@@ -79,7 +80,7 @@ CapsuleCollider:
   m_Height: 0.7
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: -0.05}
---- !u!114 &789066653013494163
+--- !u!114 &8374919111963392365
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,6 +94,104 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hurtbox: {fileID: 789066653013494162}
   droneController: {fileID: 789066653524489311}
+  hitEffect: {fileID: 4718059927425676, guid: 643639841fb531e4ba8097fed4eb9ac7, type: 3}
+  hitSFX: {fileID: 101843396078521288}
+--- !u!82 &101843396078521288
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789066653013494161}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: b0f55fb2fae9744939a1dea66f139c79, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.584
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &789066653524521713
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,6 +318,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cf0ec085dbc48c44a61e3e2603c1beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dead: 0
+  stunned: 0
   points: []
   agent: {fileID: 789066653524489253}
   brake: 0
@@ -230,7 +331,6 @@ MonoBehaviour:
   minWalkVelocity: 1
   velocity: 0
   damaged: 0
-  dead: 0
   damage1SFX: {fileID: 0}
   damage2SFX: {fileID: 0}
   deathSFX: {fileID: 0}
@@ -340,7 +440,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 0.5
-  m_BaseOffset: 1
+  m_BaseOffset: 1.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &789066653524489254
@@ -372,7 +472,7 @@ GameObject:
   - component: {fileID: 789066653522324531}
   m_Layer: 0
   m_Name: PA_Drone
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -903,7 +1003,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4674837401770553796}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 8.66, y: 22.241869, z: -38.4}
+  m_LocalPosition: {x: 21.77, y: 22.241869, z: -38.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5994276572414121531}
