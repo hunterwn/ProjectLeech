@@ -81,6 +81,9 @@ public class Player : MonoBehaviour {
 		health = maxHealth;
 
 		GetComponent<Entry>().enabled = true;
+
+		AudioManager am = AudioManager.instance;
+        am.play("theme");
 	}
 
 	void Update() {
@@ -248,6 +251,10 @@ public class Player : MonoBehaviour {
         } else {
           state.animator.Play("IdleR", -1, 0f);
         }
+
+		AudioManager am = AudioManager.instance;
+        am.stop("death");
+        am.play("theme");
 	}
 
 	public void freeze(float seconds)

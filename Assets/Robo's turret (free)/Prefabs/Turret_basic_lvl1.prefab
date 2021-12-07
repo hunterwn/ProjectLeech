@@ -63,6 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 612876dade595518e9964ed3cfa47298, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   laser: {fileID: 7083662603946102472}
   laserBeam: {fileID: 1918999061182666978}
   aimLaser: {fileID: 2028219360651944920}
@@ -75,6 +76,8 @@ MonoBehaviour:
   shootDuration: 2
   rechargeDuration: 0.5
   aimLaserWidth: 1
+  damageAmount: 1
+  damageDelay: 0.5
 --- !u!82 &1564592255086854738
 AudioSource:
   m_ObjectHideFlags: 0
@@ -84,7 +87,7 @@ AudioSource:
   m_GameObject: {fileID: 939335178}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 3140566427791534997, guid: 3307a78a147d3a841aa45c73902ef0db, type: 2}
   m_audioClip: {fileID: 8300000, guid: 0ad16167b0c09d485be17d3761f2e0ae, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1

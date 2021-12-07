@@ -34,6 +34,15 @@ public class PauseMenu : MonoBehaviour
         isPaused = true;
     }
 
+    public void Respawn()
+    {
+        pauseMenuUI.SetActive(false);
+        Player player = GameObject.Find("Player").GetComponent<Player>();
+        Time.timeScale = 1f;
+        isPaused = false;
+        player.Respawn();
+    }
+
     public void LoadControls()
     {
         Debug.Log("Loading controls display");

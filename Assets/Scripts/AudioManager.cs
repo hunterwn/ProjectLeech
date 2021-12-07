@@ -2,12 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour {
   public static AudioManager instance;
   
   [SerializeField]
   private Sound[] sounds;
+  [SerializeField]
+  AudioMixerGroup mixerGroup;
 
   private void Awake() {
     if (instance == null) {
@@ -22,6 +25,7 @@ public class AudioManager : MonoBehaviour {
 
     foreach (Sound sound in sounds) {
       AudioSource source = gameObject.AddComponent<AudioSource>();
+      source.outputAudioMixerGroup = mixerGroup;
       sound.setSource(source);
     }
   }
