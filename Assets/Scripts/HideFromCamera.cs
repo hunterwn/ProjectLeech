@@ -4,23 +4,27 @@ using UnityEngine;
 
 public class HideFromCamera : MonoBehaviour {
   [SerializeField]
-  private float threshold = 20f;
+  private float threshold = 45f;
   private int camIgnoreLayer;
+  private Renderer rendr;
 
   private void Start() {
     this.camIgnoreLayer = LayerMask.NameToLayer("CameraIgnore");
+    this.rendr = GetComponentInChildren<Renderer>();
   }
 
   private void Update() {
     Vector3 v1 = Camera.main.transform.forward;
-    Vector3 v2 = gameObject.transform.parent.forward;
+    Vector3 v2 = gameObject.transform.right;
     float angle = Vector2.SignedAngle(new Vector2(v1.x, v1.z), new Vector2(v2.x, v2.z));
-    
-    if (angle < 90f+this.threshold && angle > 90f-this.threshold) {
-      gameObject.layer = this.camIgnoreLayer;
+
+    Debug.DrawLine(this.rendr.bounds.center, this.rendr.bounds.center + v2 * 2);
+
+    if (angle < this.threshold && angle > -this.threshold) {
+      this.rendr.enabled = false;
     }
     else {
-      gameObject.layer = 0;
+      this.rendr.enabled = true;
     }
   }
 }
