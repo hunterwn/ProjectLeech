@@ -82,8 +82,8 @@ public class Player : MonoBehaviour {
 
 		GetComponent<Entry>().enabled = true;
 
-		AudioManager am = AudioManager.instance;
-        am.play("theme");
+		// AudioManager am = AudioManager.instance;
+        // am.play("theme");
 	}
 
 	void Update() {

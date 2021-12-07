@@ -14,6 +14,7 @@ using UnityEngine;
       } else {
         hitboxController.CreateHitbox("foot.R", 4);
       }
+      hitboxController.CreateHitbox("hip", 4);
     }
 
     void OnDisable() {

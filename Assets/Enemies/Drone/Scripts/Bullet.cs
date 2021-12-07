@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
 
-    public float bulletSpeed = 1.5f;
+    public float bulletSpeed = 2.0f;
 
     Vector3 shootDir;
     Transform bulletHitEffect;

@@ -15,6 +15,11 @@ public class PlayerDamageController : MonoBehaviour
             if(!player.invincible)
             {
                 Vector3 pushDirection = transform.position - collision.transform.position;
+                //prevent getting pushed down
+                if(pushDirection.y < 0)
+                {
+                    pushDirection.y = 0.0f;
+                }
                 player.addedVelocity = pushDirection * 20;
                 
                 player.TakeDamage(1, 1.5f);
