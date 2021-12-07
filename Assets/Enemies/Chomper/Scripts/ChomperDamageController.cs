@@ -7,11 +7,16 @@ public class ChomperDamageController : MonoBehaviour
 {
     public CapsuleCollider hurtbox;
     public ChomperController chomperController;
+    private Collider last_collider;
 
-    private void OnTriggerEnter(Collider trigger) {
-        if(trigger.gameObject.CompareTag("hitbox"))
+    private void OnTriggerEnter(Collider collider) {
+        if(last_collider != collider)
         {
-            chomperController.state.OnTakeDamage();
+            if(collider.gameObject.CompareTag("hitbox"))
+            {
+                this.last_collider = collider;
+                chomperController.state.OnTakeDamage();
+            }
         }
     }
 }

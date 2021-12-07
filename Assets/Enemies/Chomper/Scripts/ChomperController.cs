@@ -12,7 +12,6 @@ public class ChomperController : Enemy
     private ChomperState animController;
     public NavMeshAgent agent;
     private Animator animator;
-    public HitboxController hitboxController;
     public ChomperDamageController damageController;
     public ChomperFOVCone FOVCone;
     public ChomperState state;
@@ -32,8 +31,6 @@ public class ChomperController : Enemy
         this.agent = GetComponent<NavMeshAgent>();
         this.animController = GetComponent<ChomperState>();
         this.animator = animController.animator;
-        this.hitboxController = GetComponent<HitboxController>();
-        this.hitboxController = GetComponent<HitboxController>();
         this.damageController = transform.Find("hurtbox").GetComponent<ChomperDamageController>();
         this.FOVCone = GetComponent<ChomperFOVCone>();
 
