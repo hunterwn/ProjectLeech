@@ -80,6 +80,11 @@ public class ChomperController : Enemy
     void Update () {
         // Choose the next destination point when the agent gets
         // close to the current one.
+        if (dead)
+        {
+            this.agent.isStopped = true;
+        }
+        
         if (!agent.pathPending && agent.remainingDistance < 0.5f)
         {
             GotoNextPoint();
