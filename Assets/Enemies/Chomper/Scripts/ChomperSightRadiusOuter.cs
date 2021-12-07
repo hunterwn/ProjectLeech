@@ -21,12 +21,12 @@ public class ChomperSightRadiusOuter : MonoBehaviour
     [HideInInspector]
     public List<Transform> visibleTargets = new List<Transform>();
 
-    private float meshResolution = 1.0f;
+    //private float meshResolution = 1.0f;
     private int edgeResolveIterations = 4;
     private float edgeDistThreshold = 0.5f;
 
-    public MeshFilter viewMeshFilter;
-    Mesh viewMesh;
+    //public MeshFilter viewMeshFilter;
+    //Mesh viewMesh;
 
     IEnumerator FindTargetsWithDelay (float watchDelay)
     {
@@ -56,19 +56,17 @@ public class ChomperSightRadiusOuter : MonoBehaviour
                 {
                     if (distToTarget >= viewRadius - 1 && ChomperFOVCone.viewedFlag == true)
                     {
+                        agent.speed = 2;
                         ChomperFOVCone.agent.isStopped = false;
                         ChomperFOVCone.viewedFlag = false;
                         agent.SetDestination(path.transform.position);
-                        AudioManager am = AudioManager.instance;
-                        am.stop("fight");
-                        am.play("theme");
                     }
                 }
             }
         }
     }
 
-    void DrawFieldOfView()
+   /* void DrawFieldOfView()
     {
         int vertexCount, i;
         bool edgeDistThresholdExceeded;
@@ -126,6 +124,7 @@ public class ChomperSightRadiusOuter : MonoBehaviour
         viewMesh.triangles = triangles;
         viewMesh.RecalculateNormals();
     }
+    */
 
     public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
     {
@@ -212,9 +211,9 @@ public class ChomperSightRadiusOuter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        viewMesh = new Mesh();
-        viewMesh.name = "View Mesh";
-        viewMeshFilter.mesh = viewMesh;
+        //viewMesh = new Mesh();
+        //viewMesh.name = "View Mesh";
+        //viewMeshFilter.mesh = viewMesh;
 
         StartCoroutine ("FindTargetsWithDelay", watchDelay);
     }
@@ -222,6 +221,6 @@ public class ChomperSightRadiusOuter : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        DrawFieldOfView();
+        //DrawFieldOfView();
     }
 }
