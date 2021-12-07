@@ -19,6 +19,7 @@ public class DroneFOVCone : MonoBehaviour
     public Transform projSpawn;
     public float speed = 4.0f;
     public Transform bullet;
+    public Transform bulletHitEffect;
 
     public DroneController droneController;
     public float watchDelay;
@@ -55,12 +56,13 @@ public class DroneFOVCone : MonoBehaviour
     void ShootProjectile()
     {
         Transform bulletTransform = Instantiate(bullet, projSpawn.position, Quaternion.identity);
+
         Vector3 aimPosition = player.transform.position;
-        aimPosition += player.velocity;
+        // aimPosition += player.velocity;
         aimPosition.y += 1.5f;
         Vector3 shootDir = aimPosition - droneController.transform.position;
          
-        bulletTransform.GetComponent<Bullet>().Setup(shootDir);
+        bulletTransform.GetComponent<Bullet>().Setup(shootDir, bulletHitEffect);
     }
 
     void FindVisibleTargets()

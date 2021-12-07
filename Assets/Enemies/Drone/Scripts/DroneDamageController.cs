@@ -17,19 +17,11 @@ public class DroneDamageController : MonoBehaviour
         {
             if(collider.gameObject.CompareTag("hitbox"))
             {
-                StartCoroutine(SpawnHitEffect(collider.transform.position, 0.25f));
+                Transform hitEffectTransform = Instantiate(hitEffect, collider.transform.position, Quaternion.identity);
                 hitSFX.Play();
                 this.last_collider = collider;
                 droneController.state.OnTakeDamage();
             }
         }
-    }
-
-    IEnumerator SpawnHitEffect (Vector3 position, float lifetime)
-    {
-        // Debug.Log("SpawnHitEffect Drone");
-        Transform hitEffectTransform = Instantiate(hitEffect, position, Quaternion.identity);
-        yield return new WaitForSeconds(lifetime);
-        Destroy(hitEffectTransform.gameObject);
     }
 }

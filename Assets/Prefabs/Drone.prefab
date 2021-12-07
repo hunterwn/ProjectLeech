@@ -301,6 +301,7 @@ MonoBehaviour:
   projSpawn: {fileID: 789066653730086249}
   speed: 4
   bullet: {fileID: 8271384591958005141, guid: 6a41acfd3fd5ce84aac083977d69fbd5, type: 3}
+  bulletHitEffect: {fileID: 4718059927425676, guid: 643639841fb531e4ba8097fed4eb9ac7, type: 3}
   droneController: {fileID: 789066653524489311}
   watchDelay: 0.5
   shootDelay: 0
