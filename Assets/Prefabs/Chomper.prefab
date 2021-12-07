@@ -3414,7 +3414,7 @@ GameObject:
   - component: {fileID: 4434256411310245659}
   m_Layer: 8
   m_Name: hurtbox
-  m_TagString: hurtbox
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

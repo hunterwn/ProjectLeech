@@ -10,7 +10,7 @@ public class PlayerDamageController : MonoBehaviour
     private IEnumerator damageflash;
 
     private void OnCollisionEnter(Collision collision) {
-        if(collision.collider.tag == "hurtbox")
+        if(collision.collider.tag == "Enemy")
         {
             if(!player.invincible)
             {
