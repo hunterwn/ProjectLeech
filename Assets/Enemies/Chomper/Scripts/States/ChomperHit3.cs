@@ -8,6 +8,7 @@ public class ChomperHit3 : ChomperState {
   public SkinnedMeshRenderer meshrenderer;
 
   public Transform healthOrb;
+  private bool materialApplied = false;
 
   public int stateLength;
   void OnEnable() {
@@ -15,11 +16,12 @@ public class ChomperHit3 : ChomperState {
     chomperController.agent.isStopped = true;
     chomperController.dead = true;
     chomperController.deathSFX.Play();
+    materialApplied = false;
   }
   void Update() {
-    if(chomperController.dead && CheckAnimationFinished())
+    if(!materialApplied && CheckAnimationFinished())
     {
-      chomperController.dead = false;
+      materialApplied = true;
       chomperController.damageController.hurtbox.enabled = false;
       meshrenderer.material = dissolve;
       StartCoroutine(DelayedDeath());

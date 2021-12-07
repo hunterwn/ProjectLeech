@@ -23,7 +23,8 @@ public class Hitbox : MonoBehaviour {
     private void OnTriggerEnter(Collider collider) {
         if(collider.tag == "Enemy")
         {
-            Debug.Log("Hit enemy");
+            Enemy enemy = collider.transform.parent.gameObject.GetComponent<Enemy>();
+            enemy.Stun(1.0f);
         }
     }
 }
