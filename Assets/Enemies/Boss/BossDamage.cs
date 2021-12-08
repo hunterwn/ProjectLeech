@@ -23,11 +23,8 @@ public class BossDamage : MonoBehaviour
             boss.agent.isStopped = true;
             health -= 1;
 
-            Debug.Log("Boss health: " + health);
-
             if(health <= 0)
             {
-                Debug.Log("dead");
                 boss.dead = true;
                 boss.EnterState(boss.death);
                 boss.agent.isStopped = true;
