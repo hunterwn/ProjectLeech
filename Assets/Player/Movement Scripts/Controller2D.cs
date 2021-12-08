@@ -4,10 +4,14 @@ using System.Collections;
 public class Controller2D : RaycastController {
 
 	public float maxSlopeAngle = 80;
-
+	[SerializeField]
+	private Player player;
 	public CollisionInfo collisions;
 	[HideInInspector]
 	public Vector2 playerInput;
+
+	private MovingPlatformController movingPlatform;
+	private Vector3 movingPlatformPosition;
 
 	public override void Start() {
 		base.Start ();
@@ -128,6 +132,34 @@ public class Controller2D : RaycastController {
 						Invoke("ResetFallingThroughPlatform",.5f);
 						continue;
 					}
+				}
+
+				if (hit.collider.tag == "MovingPlatform") {
+					if(movingPlatformPosition != Vector3.zero)
+					{
+						Vector3 previousPlatformPosition = movingPlatformPosition;
+						Vector3 newPlatformPosition = hit.collider.gameObject.transform.position;
+						if(previousPlatformPosition != newPlatformPosition)
+						{
+							movingPlatformPosition = hit.collider.gameObject.transform.position;
+							Vector3 move = (movingPlatformPosition - previousPlatformPosition) / Time.deltaTime;
+							float magnitude = move.magnitude / 4.9f;
+							if(move != Vector3.zero)
+							{
+								float dotProduct = Vector3.Dot(Vector3.Normalize(player.transform.forward), Vector3.Normalize(move));
+								if(dotProduct < 0)
+								{
+									player.velocity.x -= magnitude;
+								} else {
+									player.velocity.x += magnitude;
+								}
+							}
+						}
+					} else {
+						movingPlatformPosition = hit.collider.gameObject.transform.position;
+					}
+				} else {
+					this.movingPlatformPosition = Vector3.zero;
 				}
 
 				moveAmount.y = (hit.distance - skinWidth) * directionY;

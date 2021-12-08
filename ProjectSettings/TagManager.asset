@@ -10,6 +10,7 @@ TagManager:
   - HealthOrb
   - Grate
   - Enemy
+  - MovingPlatform
   layers:
   - Default
   - TransparentFX
