@@ -464,6 +464,7 @@ MonoBehaviour:
   verticalRaySpacing: 0
   Bcollider: {fileID: 0}
   maxSlopeAngle: 80
+  player: {fileID: 1173901906839241625}
   playerInput: {x: 0, y: 0}
 --- !u!114 &1173901906839241627
 MonoBehaviour:
