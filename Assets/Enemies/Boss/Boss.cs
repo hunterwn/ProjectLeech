@@ -28,6 +28,7 @@ public class Boss : Enemy
     public State attack1;
     public State attack2;
     public State attack3;
+    public State hurt;
 
     private void InitializeStates()
     {
@@ -37,6 +38,7 @@ public class Boss : Enemy
         this.attack1 = new State("attack1", () => AttackCallback());
         this.attack2 = new State("attack2", () => AttackCallback());
         this.attack3 = new State("attack3", () => AttackCallback());
+        this.hurt = new State("hurt", () => HurtCallback());
     }
     //Unity functions
     private void Start() {
@@ -57,8 +59,6 @@ public class Boss : Enemy
         {
             if(!agent.isStopped)
             {
-                agent.isStopped = true;
-
                 //Use a random attack animation
                 System.Random rand = new System.Random();
                 int randomAttackType = rand.Next(1, numAttacks);
@@ -74,6 +74,8 @@ public class Boss : Enemy
                         EnterState(attack3);
                         break;
                 }
+
+                agent.isStopped = true;
             }
         }
     }
@@ -82,6 +84,7 @@ public class Boss : Enemy
     public void EnterState(State state)
     {
         current_state = state;
+        agent.isStopped = false;
         animator.SetTrigger(state.animid);
     }
     public bool CheckAnimationFinished() {
@@ -132,8 +135,14 @@ public class Boss : Enemy
     {
         if(CheckAnimationFinished())
         {
-            agent.isStopped = false;
+            EnterState(idle);
+        }
+    }
 
+    private void HurtCallback()
+    {
+        if(CheckAnimationFinished())
+        {
             EnterState(idle);
         }
     }
