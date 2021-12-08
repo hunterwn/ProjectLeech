@@ -29,6 +29,7 @@ public class Boss : Enemy
     public State attack2;
     public State attack3;
     public State hurt;
+    public State death;
 
     private void InitializeStates()
     {
@@ -39,6 +40,7 @@ public class Boss : Enemy
         this.attack2 = new State("attack2", () => AttackCallback());
         this.attack3 = new State("attack3", () => AttackCallback());
         this.hurt = new State("hurt", () => HurtCallback());
+        this.death = new State("death", () => DeathCallback());
     }
     //Unity functions
     private void Start() {
@@ -46,6 +48,10 @@ public class Boss : Enemy
 
         //Enter initial state
         EnterState(idle);
+    }
+
+    public void Stun() {
+        return;
     }
 
     private void Update() {
@@ -145,5 +151,13 @@ public class Boss : Enemy
         {
             EnterState(idle);
         }
+    }
+
+    private void DeathCallback()
+    {
+        // if(CheckAnimationFinished())
+        // {
+        //     EnterState(idle);
+        // }
     }
 }

@@ -30,7 +30,6 @@ public class Hitbox : MonoBehaviour {
                 this.last_collider = collider;
                 Enemy enemy = collider.transform.parent.gameObject.GetComponent<Enemy>();
                 enemy.Stun(1.0f);
-
                 player.freeze(0.1f);
             }
         }
