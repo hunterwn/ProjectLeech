@@ -20,7 +20,7 @@ public class EnvironmentTurnPlayer : MonoBehaviour {
   private Vector3 center;
   private float radius;
   private float snapPosInterval = 0.25f;
-  private float snapAngleInterval = 15f;
+  private float snapAngleInterval = 45f;
   private bool objInTrigger = false;
 
   // Helpers
