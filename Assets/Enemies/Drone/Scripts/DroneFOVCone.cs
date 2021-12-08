@@ -93,16 +93,20 @@ public class DroneFOVCone : MonoBehaviour
                         viewedFlag = true;
                     }
                     // Player is within sight
-                    agent.speed = 3;
+                    agent.speed = 8;
                     agent.SetDestination(player.transform.position);
 
                     if (droneController.attackTimer >= droneController.attackCooldown)
                     {
                         ShootProjectile();
-                        agent.speed = 3;
+                        agent.speed = 8;
                     }
 
                     visibleTargets.Add (target);
+                }
+                else
+                {
+                    agent.speed = 4;
                 }
             }
         }
