@@ -74,7 +74,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 789066653013494161}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.2
   m_Height: 0.7
@@ -297,7 +297,7 @@ MonoBehaviour:
   player: {fileID: 0}
   path: {fileID: 4674837401888964816}
   viewedFlag: 0
-  coneFlag: 1
+  coneFlag: 0
   projSpawn: {fileID: 789066653730086249}
   speed: 4
   bullet: {fileID: 8271384591958005141, guid: 6a41acfd3fd5ce84aac083977d69fbd5, type: 3}
@@ -385,8 +385,11 @@ MonoBehaviour:
   droneController: {fileID: 0}
   currentFrame: 0
   dissolve: {fileID: 2100000, guid: ff9cdc7a08405f2e6867453807ce3b00, type: 2}
+  PA_Drone: {fileID: 2100000, guid: 9468cfbf407387c4d8fef60308588e42, type: 2}
   meshrenderer: {fileID: 789066653522324531}
   healthOrb: {fileID: 4664936296362669816, guid: d59a54ffcffb6e142a29f39d547e90e7, type: 3}
+  Drone: {fileID: 0}
+  rTime: 6
   stateLength: 0
 --- !u!114 &789066653524489307
 MonoBehaviour:
