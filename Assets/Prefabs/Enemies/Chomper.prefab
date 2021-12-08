@@ -2251,7 +2251,7 @@ MonoBehaviour:
   player: {fileID: 0}
   path: {fileID: 5950702159483497358}
   viewedFlag: 0
-  coneFlag: 1
+  coneFlag: 0
   chomperController: {fileID: 1767148541055091350}
   watchDelay: 0.5
   visibleTargets: []
@@ -2293,6 +2293,9 @@ MonoBehaviour:
   currentFrame: 0
   dissolve: {fileID: 2100000, guid: ff9cdc7a08405f2e6867453807ce3b00, type: 2}
   meshrenderer: {fileID: 1767148540657461067}
+  chomper: {fileID: 1767148541600355807}
+  chomperMat: {fileID: 2100000, guid: dad26cc8af5eca141b973d06942e6efb, type: 2}
+  rTime: 6
   healthOrb: {fileID: 4664936296362669816, guid: d59a54ffcffb6e142a29f39d547e90e7, type: 3}
   stateLength: 0
 --- !u!114 &1767148541055091355
@@ -3295,7 +3298,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1767148541600355807}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -14.92, y: 1.251869, z: -38.403027}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3304,7 +3307,7 @@ Transform:
   - {fileID: 1767148541055091354}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1767148541638611252
 GameObject:
   m_ObjectHideFlags: 0
