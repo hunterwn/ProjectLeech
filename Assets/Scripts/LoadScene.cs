@@ -7,10 +7,20 @@ public class LoadScene : MonoBehaviour
 {
     [SerializeField]
     public string sceneName;
+    
+    private enum LoadType { swap, add };
+    [SerializeField]
+    private LoadType loadType = LoadType.swap;
+
     private void OnTriggerEnter(Collider coll) {
         if(coll.tag == "Player")
         {
-            SceneManager.LoadScene(sceneName);
+            if (loadType == LoadType.swap) {
+                SceneManager.LoadScene(sceneName);
+            }
+            else if (loadType == LoadType.add) {
+                SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+            }
         }
     }
 }
